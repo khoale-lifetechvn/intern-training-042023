@@ -1,0 +1,53 @@
+version: "1"
+x-common-variables: &common-variables
+  MYSQL_DATABASE: db
+  MYSQL_USER: root
+  MYSQL_PASSWORD: 12345678
+  MYSQL_ROOT_PASSWORD: 12345678
+
+services:
+
+  nguyen_db:
+    image: mysql
+    restart: always
+   
+    volumes:
+      - "./setup.sql:/docker-entrypoint-initdb.d/setup.sql"
+    ports:
+      - "3300:3301"
+    environment:
+     
+      MYSQL_ROOT_PASSWORD: 12345678
+
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: "./server"
+    depends_on:
+      - nguyen_db
+    volumes:
+      - /server/node_modules
+      - ./server:/app
+    environment:
+      <<: *common-variables
+      MYSQL_HOST_IP: mysql_db
+    ports:
+      - 3005:3005
+
+  client:
+    depends_on:
+      - nguyen_db
+      - server
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    volumes:
+      - /client/node_modules
+      - ./client:/app
+    ports:
+      - 3000:3000
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
