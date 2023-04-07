@@ -1,11 +1,9 @@
-# Intern Training 04/2023
+Để run Project
 
-Phase 04/2023
-
-Number of members: 5
-
-Lê Tiến Việt  
-Dương Trung Nguyên  
-Thái Tường Minh  
-Nguyễn Minh Vương  
-Nguyễn Hồng Lợi  
+- Chạy docker-compose up --build -d
+- Mở Navicat:
+    + kết nối tại port 3307
+    +   user: Minh
+        pass: Tuongminh2001@
+    + import database trong folder database vào my_database => refesh
+- truy cập localhost:3000 
