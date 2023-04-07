@@ -3,7 +3,7 @@ services:
     build: 
       dockerfile: Dockerfile
       context: ./client
-    image: react-task/client
+    image: task/client
     volumes:
       - ./client:/app
       - /app/node_modules
@@ -19,14 +19,14 @@ services:
     build: 
       dockerfile: Dockerfile
       context: ./server
-    image: react-task/server
+    image: task/server
     volumes:
       - ./server:/app
       - /app/node_modules
     ports:
       - "3001:3001"
     environment:
-      MYSQL_HOST: mysql #giống tên container
+      MYSQL_HOST: mysql 
       MYSQL_USER: Minh  
       MYSQL_PASSWORD: Tuongminh2001@
       MYSQL_HOST_IP: mysql
@@ -36,9 +36,9 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - todo-mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     ports:
-      - "3307:3306" #port 3307 nghe từ navicat, 3306 nghe từ nodejs
+      - "3307:3306" 
     environment:
       MYSQL_ROOT_PASSWORD: 'Tuongminh2001@'
       MYSQL_DATABASE: 'my_database'
@@ -46,4 +46,4 @@ services:
       MYSQL_PASSWORD: 'Tuongminh2001@'
 
 volumes:
-  todo-mysql-data:
+  mysql-data:
