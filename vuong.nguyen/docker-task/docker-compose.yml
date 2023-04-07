@@ -6,7 +6,7 @@ services:
     image: react-task/client
     volumes:
       - ./client:/app
-      - /app/node_modules
+      - node-app:/app/node_modules
     ports:
       - "3000:3000"
     environment:
@@ -22,7 +22,7 @@ services:
     image: react-task/server
     volumes:
       - ./server:/app
-      - /app/node_modules
+      - node-api:/app/node_modules
     ports:
       - "5000:5000"
     environment:
@@ -47,4 +47,6 @@ services:
 
 volumes:
   todo-mysql-data:
+  node-api:
+  node-app:
     
