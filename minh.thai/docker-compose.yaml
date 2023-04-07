@@ -1,0 +1,49 @@
+services:
+  app:
+    build: 
+      dockerfile: Dockerfile
+      context: ./client
+    image: react-task/client
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    ports:
+      - "3001:3001"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api
+      - mysql
+
+  api:
+    build: 
+      dockerfile: Dockerfile
+      context: ./server
+    image: react-task/server
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_USER: Minh  
+      MYSQL_PASSWORD: Tuongminh2001@
+      MYSQL_HOST_IP: localhost
+    depends_on:
+      - mysql
+  
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'Tuongminh2001@'
+      MYSQL_DATABASE: 'my_database'
+      MYSQL_USER: 'Minh'
+      MYSQL_PASSWORD: 'Tuongminh2001@'
+
+volumes:
+  todo-mysql-data:
