@@ -13,7 +13,7 @@ services:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - api
-      - mysql
+      - data
 
   api:
     build: 
@@ -26,15 +26,16 @@ services:
     ports:
       - "3001:3001"
     environment:
-      MYSQL_HOST: mysql 
+      MYSQL_HOST: data 
       MYSQL_USER: Minh  
       MYSQL_PASSWORD: Tuongminh2001@
-      MYSQL_HOST_IP: mysql
+      MYSQL_HOST_IP: data
     depends_on:
-      - mysql
+      - data
   
-  mysql:
+  data:
     image: mysql:8.0
+    restart: always
     volumes:
       - mysql-data:/var/lib/mysql
     ports:
