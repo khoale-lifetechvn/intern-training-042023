@@ -53,11 +53,11 @@ function App() {
       {isBusy? <Skeleton active/> : 
       <Table columns={columns.length>0&&columns.map((item)=>{
       return {
-        title: item.COLUMN_NAME.toUpperCase(),
-        dataIndex: item.COLUMN_NAME,
-        key: item.COLUMN_NAME,
+        title: item.toUpperCase(),
+        dataIndex: item,
+        key: item,
       }
-    })} dataSource={data.length>0 && data} rowKey={columns[0].COLUMN_NAME}/>}
+    })} dataSource={data.length>0 && data} rowKey={columns[0]}/>}
       </Content>
     </Layout>
   );

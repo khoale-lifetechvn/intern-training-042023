@@ -13,13 +13,13 @@ const connection = mysql.createPool({
 })
 app.use(cors())
 
+app.listen(port, () => console.log(`Listening on port ${port}`));
 connection.query("SELECT 1",(err, result)=>{
   err? console.error(err):console.log("Connect to database successfullly");
 })
 
 app.get('/api', (req, res) => {
     var sql = "SELECT * FROM "+`${req.query.table}`;
-    //console.log(req.query);
     connection.query(sql, function(err, results) {
       if (err) throw err;
       res.send(results);
@@ -29,8 +29,6 @@ app.get('/api', (req, res) => {
     var sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '"+`${req.query.table}`+"' ORDER BY ORDINAL_POSITION";
     connection.query(sql, function(err, results) {
       if (err) throw err;
-      res.send(results);
+      res.send(results.map(i=>i.COLUMN_NAME));
     });
   });
-
-app.listen(port, () => console.log(`Listening on port ${port}`));

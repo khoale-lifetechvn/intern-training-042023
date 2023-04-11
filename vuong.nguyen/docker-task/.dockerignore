@@ -1,5 +1,4 @@
-build
+build/
 .dockerignore
-Dockerfile
+/Dockerfile
 docker-compose.yml
-client
