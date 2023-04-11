@@ -1,13 +1,11 @@
 
 # Simple Dockerize ReactJS + NodeJS + MySQL
 ## Features
-
 - Load data from MySQL
 - Show data on ReactJS
 - Dockerize project
 
 ## Environment Variables
-
 To run this project, you will need to install these environment
 `Docker`
 `NodeJS`
@@ -32,4 +30,3 @@ To run this project, you will need to install these environment
 ```bash
   https://localhost:3000
 ```
-
