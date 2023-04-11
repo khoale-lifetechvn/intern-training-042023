@@ -1,33 +1,41 @@
-
 const express = require('express');
 const mysql = require('mysql2');
-const cors = require('cors');
-
+const cors = require('cors')
 const app = express();
-const PORT = 3001;
+
+
+
+const connection = mysql.createConnection({
+  host: 'mysql',
+  user: 'root',
+  password: '12345678',
+  database: 'newdata'
+});
 app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
 
-app.listen(PORT, (error) =>{
-    if(!error)
-        console.log("Server is Successfully Running, and App is listening on port "+ PORT)
-    else 
-        console.log("Error occurred, server can't start", error);
-    }
-);
-
-const db = mysql.createPool({
-    host: 'localhost', // the host name MYSQL_DATABASE: node_mysql
-    user: 'root', // database user MYSQL_USER: MYSQL_USER
-    password: '12345678', // database user password MYSQL_PASSWORD: MYSQL_PASSWORD
-    database: 'newdatabase' // database name MYSQL_HOST_IP: mysql_db
+app.get('/:table/columns',(req, res)=>{
+  const table = req.params.table
+  const query = "select COLUMN_NAME as name from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME= '" + `${table}` +"'"
+  connection.query(query,(err,results)=>{
+    if (err) throw error;
+    res.send(results);
   })
+})
 
-  app.get('/', (req, res) => {
-    const SelectQuery = " SELECT * FROM regions";
-    db.query(SelectQuery, (err, result) => {
-      res.send(result)
-    })
+app.get('/:table' , (req, res) => {
+  const table = req.params.table
+  const query = "select * from "+ `${table}`
+  console.log(query);
+  connection.query(query,(err, results)=>{
+    if (err) throw error;
+    res.send(results);
+  })
+})
+app.get('/', (req, res) => {
+  res.send('Hello Viet');
+});
 
-  });
+app.listen(3001, () => {
+  console.log('Server started on port 3001');
+});
+
