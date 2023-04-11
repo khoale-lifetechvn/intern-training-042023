@@ -14,7 +14,8 @@ services:
     depends_on:
       - api
       - mysql
-
+    restart: always
+    
   api:
     build: 
       dockerfile: Dockerfile
@@ -41,7 +42,7 @@ services:
       - "3307:3306"
     environment:
       MYSQL_DATABASE: 'countries'
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
 
 volumes:
   todo-mysql-data:
