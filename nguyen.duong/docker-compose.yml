@@ -1,0 +1,50 @@
+services:
+  nguyen_db:
+    image: mysql
+    volumes:
+    - dbdata:/var/lib/mysql
+    ports:
+      - "3300:3306"
+    env_file:
+       - .env
+    restart: always
+      
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: "./server"
+    volumes:
+      - /server/node_modules
+      - ./server:/app
+    env_file:
+      - .env
+    ports:
+      - 3001:3001
+    restart: always
+    depends_on:
+      - nguyen_db
+
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    volumes:
+      - /client/node_modules
+      - ./client:/app
+    ports:
+      - 3000:3000
+    restart: always
+    depends_on:
+      - nguyen_db
+      - server
+    
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  dbdata:
+
+
