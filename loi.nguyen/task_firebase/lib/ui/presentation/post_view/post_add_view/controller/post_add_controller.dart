@@ -1,7 +1,7 @@
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/field_name.dart';
-import 'package:task_firebase/core/service/api.dart';
 import 'package:task_firebase/core/extension/extension.dart';
+import 'package:task_firebase/core/service/api_nosql.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
 
@@ -17,16 +17,16 @@ class PostAddController {
     _content = value;
   }
 
+  ApiNosql api = ApiNosql(
+      parentTable: BaseTable.posts,
+      childTable: BaseTable.userPosts,
+      parentID: locator<Singleton>().userModel.id);
+
   void addPost() async {
-    Api api = Api(BaseTable.posts);
-    String uid = locator<Singleton>().userModel.id;
-    await api.addDocumentComplex(
-        childTable: BaseTable.userPosts,
-        parentID: uid,
-        data: {
-          FieldName.title: _title,
-          FieldName.content: _content,
-        }).then((value) {
+    await api.addDocument(data: {
+      FieldName.title: _title,
+      FieldName.content: _content,
+    }).then((value) {
       value.backOrNotification();
     });
   }

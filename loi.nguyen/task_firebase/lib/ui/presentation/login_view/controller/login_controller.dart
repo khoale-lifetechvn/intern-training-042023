@@ -22,7 +22,7 @@ class LoginController {
   void signIn() async {
     await auth.signIn(_email ?? '', _password ?? '').then((value) {
       if (value == null) {
-        locator<GetNavigation>().replaceTo(RouterPath.postManager);
+        locator<GetNavigation>().toAndRemoveUntil(RouterPath.home);
         logSuccess('Đăng nhập thành công');
       } else {
         locator<GetNavigation>().openDialog(content: value);
@@ -33,7 +33,7 @@ class LoginController {
   void googleSignIn() async {
     await auth.googleSignIn().then((value) {
       if (value == null) {
-        locator<GetNavigation>().replaceTo(RouterPath.postManager);
+        locator<GetNavigation>().toAndRemoveUntil(RouterPath.home);
       } else {
         locator<GetNavigation>().openDialog(content: value);
       }
@@ -43,7 +43,7 @@ class LoginController {
   void facebookSignIn() async {
     await auth.facebookSignIn().then((value) {
       if (value == null) {
-        locator<GetNavigation>().replaceTo(RouterPath.postManager);
+        locator<GetNavigation>().toAndRemoveUntil(RouterPath.home);
       } else {
         locator<GetNavigation>().openDialog(content: value);
       }
@@ -53,7 +53,7 @@ class LoginController {
   void githubSignIn(BuildContext context) async {
     await auth.githubSignIn(context).then((value) {
       if (value == null) {
-        locator<GetNavigation>().replaceTo(RouterPath.postManager);
+        locator<GetNavigation>().toAndRemoveUntil(RouterPath.home);
       } else {
         locator<GetNavigation>().openDialog(content: value);
       }

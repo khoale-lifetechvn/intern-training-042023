@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
             title: 'Find users',
             icon: Icons.search,
             onPressed: () {
-              locator<GetNavigation>().to(RouterPath.user);
+              locator<GetNavigation>().to(RouterPath.findUsers);
             }),
         _ItemCard(
             title: 'View posts',
@@ -39,7 +39,7 @@ class HomeView extends StatelessWidget {
             title: 'User',
             icon: Icons.medical_information_rounded,
             onPressed: () {
-              locator<GetNavigation>().to(RouterPath.postManager);
+              locator<GetNavigation>().to(RouterPath.user);
             })
       ];
 

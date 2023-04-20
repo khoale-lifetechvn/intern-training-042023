@@ -3,6 +3,7 @@ import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/field_name.dart';
 import 'package:task_firebase/core/model/post_model.dart';
 import 'package:task_firebase/core/service/api.dart';
+import 'package:task_firebase/core/service/api_nosql.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/core/extension/extension.dart';
@@ -10,7 +11,11 @@ import 'package:task_firebase/core/extension/extension.dart';
 class PostDetailController {
   PostDetailController(this._postModel);
   final PostModel _postModel;
-  final Api _api = Api(BaseTable.posts);
+  final ApiNosql _api = ApiNosql(
+    parentTable: BaseTable.posts,
+    parentID: locator<Singleton>().userModel.id,
+    childTable: BaseTable.userPosts,
+  );
 
   String? _title;
   String? _content;
@@ -26,14 +31,10 @@ class PostDetailController {
   bool get isAuthor => _postModel.refID == locator<Singleton>().userModel.id;
 
   void updatePost() async {
-    await _api.updateDocumentComplex(
-        parentID: locator<Singleton>().userModel.id,
-        childTable: BaseTable.userPosts,
-        childID: _postModel.id,
-        data: {
-          FieldName.title: _title,
-          FieldName.content: _content,
-        }).then((value) => value.backOrNotification());
+    await _api.updateDocument(id: _postModel.id, data: {
+      FieldName.title: _title,
+      FieldName.content: _content,
+    }).then((value) => value.backOrNotification());
   }
 
   Future<DocumentSnapshot<Object?>> loadData() {

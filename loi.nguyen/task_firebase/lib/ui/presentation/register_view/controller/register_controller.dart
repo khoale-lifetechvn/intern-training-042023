@@ -34,7 +34,7 @@ class RegisterController {
           typeDialog: TypeDialog.sucesss,
           content: 'You have successfully registered',
           onClose: () {
-            locator<GetNavigation>().replaceTo(RouterPath.login);
+            locator<GetNavigation>().toAndRemoveUntil(RouterPath.home);
           },
         );
       }
