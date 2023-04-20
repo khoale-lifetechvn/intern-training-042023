@@ -1,4 +1,6 @@
-# task_firebase
+## Setup
+- 
+# Features
 - You can read demo: [demo](https://firestore-root.web.app/#/)
 - Status complete:
     - [ ] Realtime database
