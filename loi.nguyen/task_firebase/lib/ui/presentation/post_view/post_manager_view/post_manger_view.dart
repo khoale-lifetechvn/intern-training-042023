@@ -23,11 +23,6 @@ class _PostManagerViewState extends State<PostManagerView>
         child: Scaffold(
           appBar: LFAppBar(
             title: 'Manager Posts',
-            suffix: IconButton(
-                onPressed: () {
-                  locator<GetNavigation>().to(RouterPath.user);
-                },
-                icon: const Icon(Icons.accessibility_rounded)),
             bottom: const TabBar(
               tabs: [
                 Tab(
