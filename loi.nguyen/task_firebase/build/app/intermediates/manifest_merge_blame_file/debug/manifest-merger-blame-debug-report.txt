@@ -1,0 +1,424 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.task_firebase"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="33" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->D:\intern-training-042023\loi.nguyen\task_firebase\android\app\src\main\AndroidManifest.xml:3:5-66
+15-->D:\intern-training-042023\loi.nguyen\task_firebase\android\app\src\main\AndroidManifest.xml:3:22-64
+16
+17    <queries>
+17-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:29:5-31:15
+18        <package android:name="com.facebook.katana" />
+18-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:30:9-55
+18-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:30:18-52
+19    </queries>
+20
+21    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+21-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:26:5-79
+21-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:26:22-76
+22    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+22-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:28:5-79
+22-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:28:22-76
+23
+24    <permission
+24-->[androidx.core:core:1.9.0] C:\Users\Lifetech\.gradle\caches\transforms-3\5f80b20db3afa86c72a9766b008d752d\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+25        android:name="com.example.task_firebase.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+25-->[androidx.core:core:1.9.0] C:\Users\Lifetech\.gradle\caches\transforms-3\5f80b20db3afa86c72a9766b008d752d\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+26        android:protectionLevel="signature" />
+26-->[androidx.core:core:1.9.0] C:\Users\Lifetech\.gradle\caches\transforms-3\5f80b20db3afa86c72a9766b008d752d\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+27
+28    <uses-permission android:name="com.example.task_firebase.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+28-->[androidx.core:core:1.9.0] C:\Users\Lifetech\.gradle\caches\transforms-3\5f80b20db3afa86c72a9766b008d752d\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+28-->[androidx.core:core:1.9.0] C:\Users\Lifetech\.gradle\caches\transforms-3\5f80b20db3afa86c72a9766b008d752d\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+29    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+29-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Lifetech\.gradle\caches\transforms-3\b90c0f716ea07ae318e89997dcef7094\transformed\jetified-installreferrer-1.0\AndroidManifest.xml:9:5-110
+29-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Lifetech\.gradle\caches\transforms-3\b90c0f716ea07ae318e89997dcef7094\transformed\jetified-installreferrer-1.0\AndroidManifest.xml:9:22-107
+30
+31    <application
+32        android:name="android.app.Application"
+33        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+33-->[androidx.core:core:1.9.0] C:\Users\Lifetech\.gradle\caches\transforms-3\5f80b20db3afa86c72a9766b008d752d\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+34        android:debuggable="true"
+35        android:icon="@mipmap/ic_launcher"
+36        android:label="task_firebase"
+37        android:supportsRtl="true" >
+37-->[com.facebook.android:facebook-login:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\a6f682060ab6f69f7cb9fb2a8d7536cd\transformed\jetified-facebook-login-15.0.2\AndroidManifest.xml:28:18-44
+38        <meta-data
+39            android:name="com.facebook.sdk.ApplicationId"
+40            android:value="@string/facebook_app_id" />
+41        <meta-data
+42            android:name="com.facebook.sdk.ClientToken"
+43            android:value="@string/facebook_client_token" />
+44
+45        <activity
+46            android:name="com.example.task_firebase.MainActivity"
+47            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+48            android:exported="true"
+49            android:hardwareAccelerated="true"
+50            android:launchMode="singleTop"
+51            android:theme="@style/LaunchTheme"
+52            android:windowSoftInputMode="adjustResize" >
+53
+54            <!--
+55                 Specifies an Android theme to apply to this Activity as soon as
+56                 the Android process has started. This theme is visible to the user
+57                 while the Flutter UI initializes. After that, this theme continues
+58                 to determine the Window background behind the Flutter UI.
+59            -->
+60            <meta-data
+61                android:name="io.flutter.embedding.android.NormalTheme"
+62                android:resource="@style/NormalTheme" />
+63
+64            <intent-filter>
+65                <action android:name="android.intent.action.MAIN" />
+66
+67                <category android:name="android.intent.category.LAUNCHER" />
+68                <!-- facebook -->
+69                <action android:name="android.intent.action.VIEW" />
+69-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:44:17-69
+69-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:44:25-66
+70
+71                <category android:name="android.intent.category.DEFAULT" />
+71-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:46:17-76
+71-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:46:27-73
+72                <category android:name="android.intent.category.BROWSABLE" />
+72-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:47:17-78
+72-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:47:27-75
+73
+74                <data android:scheme="@string/fb_login_protocol_scheme" />
+74-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:49:17-51:50
+74-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:51:21-47
+75                <!-- github -->
+76                <data
+76-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:49:17-51:50
+77                    android:host="githubauth"
+77-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:50:21-56
+78                    android:path="/callback"
+79                    android:scheme="com.example.task_firebase" />
+79-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:51:21-47
+80            </intent-filter>
+81        </activity>
+82        <!--
+83             Don't delete the meta-data below.
+84             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+85        -->
+86        <meta-data
+87            android:name="flutterEmbedding"
+88            android:value="2" />
+89
+90        <service
+90-->[:firebase_auth] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+91            android:name="com.google.firebase.components.ComponentDiscoveryService"
+91-->[:firebase_auth] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:18-89
+92            android:directBootAware="true"
+92-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Lifetech\.gradle\caches\transforms-3\ac7b423c18e0e9c28c2a8c784d1125eb\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:34:13-43
+93            android:exported="false" >
+93-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:68:13-37
+94            <meta-data
+94-->[:firebase_auth] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+95                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
+95-->[:firebase_auth] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+96                android:value="com.google.firebase.components.ComponentRegistrar" />
+96-->[:firebase_auth] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+97            <meta-data
+97-->[:firebase_storage] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+98                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
+98-->[:firebase_storage] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-126
+99                android:value="com.google.firebase.components.ComponentRegistrar" />
+99-->[:firebase_storage] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+100            <meta-data
+100-->[:cloud_firestore] D:\intern-training-042023\loi.nguyen\task_firebase\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+101                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
+101-->[:cloud_firestore] D:\intern-training-042023\loi.nguyen\task_firebase\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-134
+102                android:value="com.google.firebase.components.ComponentRegistrar" />
+102-->[:cloud_firestore] D:\intern-training-042023\loi.nguyen\task_firebase\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+103            <meta-data
+103-->[:firebase_core] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+104                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+104-->[:firebase_core] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+105                android:value="com.google.firebase.components.ComponentRegistrar" />
+105-->[:firebase_core] D:\intern-training-042023\loi.nguyen\task_firebase\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+106            <meta-data
+106-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:69:13-71:85
+107                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+107-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:70:17-109
+108                android:value="com.google.firebase.components.ComponentRegistrar" />
+108-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:71:17-82
+109            <meta-data
+109-->[com.google.firebase:firebase-firestore:24.4.5] C:\Users\Lifetech\.gradle\caches\transforms-3\440a45ab3501cf4de9bf9e669edfca55\transformed\jetified-firebase-firestore-24.4.5\AndroidManifest.xml:19:13-21:85
+110                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+110-->[com.google.firebase:firebase-firestore:24.4.5] C:\Users\Lifetech\.gradle\caches\transforms-3\440a45ab3501cf4de9bf9e669edfca55\transformed\jetified-firebase-firestore-24.4.5\AndroidManifest.xml:20:17-111
+111                android:value="com.google.firebase.components.ComponentRegistrar" />
+111-->[com.google.firebase:firebase-firestore:24.4.5] C:\Users\Lifetech\.gradle\caches\transforms-3\440a45ab3501cf4de9bf9e669edfca55\transformed\jetified-firebase-firestore-24.4.5\AndroidManifest.xml:21:17-82
+112            <meta-data
+112-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\Lifetech\.gradle\caches\transforms-3\ea46c11e791a97fb8cf67c6856411f7d\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:32:13-34:85
+113                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+113-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\Lifetech\.gradle\caches\transforms-3\ea46c11e791a97fb8cf67c6856411f7d\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:33:17-107
+114                android:value="com.google.firebase.components.ComponentRegistrar" />
+114-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\Lifetech\.gradle\caches\transforms-3\ea46c11e791a97fb8cf67c6856411f7d\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:34:17-82
+115        </service>
+116
+117        <provider
+117-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+118            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+118-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-82
+119            android:authorities="com.example.task_firebase.flutter.image_provider"
+119-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
+120            android:exported="false"
+120-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+121            android:grantUriPermissions="true" >
+121-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+122            <meta-data
+122-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:75
+123                android:name="android.support.FILE_PROVIDER_PATHS"
+123-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+124                android:resource="@xml/flutter_image_picker_file_paths" />
+124-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
+125        </provider>
+126        <provider
+126-->[:flutter_webview_plugin] D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\intermediates\merged_manifest\debug\AndroidManifest.xml:11:9-20:20
+127            android:name="androidx.core.content.FileProvider"
+127-->[:flutter_webview_plugin] D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-62
+128            android:authorities="com.example.task_firebase.fileprovider"
+128-->[:flutter_webview_plugin] D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-64
+129            android:exported="false"
+129-->[:flutter_webview_plugin] D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-37
+130            android:grantUriPermissions="true" >
+130-->[:flutter_webview_plugin] D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-47
+131            <meta-data
+131-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:75
+132                android:name="android.support.FILE_PROVIDER_PATHS"
+132-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+133                android:resource="@xml/filepaths" />
+133-->[:image_picker_android] D:\intern-training-042023\loi.nguyen\task_firebase\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
+134        </provider>
+135
+136        <activity
+136-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:34:9-37:66
+137            android:name="com.facebook.FacebookActivity"
+137-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:35:13-57
+138            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+138-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:36:13-96
+139            android:theme="@style/com_facebook_activity_theme" />
+139-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:37:13-63
+140        <activity android:name="com.facebook.CustomTabMainActivity" />
+140-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:38:9-71
+140-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:38:19-68
+141        <activity
+141-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:39:9-53:20
+142            android:name="com.facebook.CustomTabActivity"
+142-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:40:13-58
+143            android:exported="true" >
+143-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:41:13-36
+144            <intent-filter>
+144-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:43:13-52:29
+145                <action android:name="android.intent.action.VIEW" />
+145-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:44:17-69
+145-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:44:25-66
+146
+147                <category android:name="android.intent.category.DEFAULT" />
+147-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:46:17-76
+147-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:46:27-73
+148                <category android:name="android.intent.category.BROWSABLE" />
+148-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:47:17-78
+148-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:47:27-75
+149
+150                <data
+150-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:49:17-51:50
+151                    android:host="cct.com.example.task_firebase"
+151-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:50:21-56
+152                    android:scheme="fbconnect" />
+152-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:51:21-47
+153            </intent-filter>
+154        </activity>
+155        <activity
+155-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
+156            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+156-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
+157            android:excludeFromRecents="true"
+157-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
+158            android:exported="false"
+158-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
+159            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+159-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
+160        <!--
+161            Service handling Google Sign-In user revocation. For apps that do not integrate with
+162            Google Sign-In, this service will never be started.
+163        -->
+164        <service
+164-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
+165            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+165-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
+166            android:exported="true"
+166-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
+167            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+167-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
+168            android:visibleToInstantApps="true" />
+168-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Lifetech\.gradle\caches\transforms-3\2f242034b75eb25a4a42e0262b447777\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
+169
+170        <activity
+170-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:29:9-46:20
+171            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+171-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:30:13-80
+172            android:excludeFromRecents="true"
+172-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:31:13-46
+173            android:exported="true"
+173-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:32:13-36
+174            android:launchMode="singleTask"
+174-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:33:13-44
+175            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+175-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:34:13-72
+176            <intent-filter>
+176-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:35:13-45:29
+177                <action android:name="android.intent.action.VIEW" />
+177-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:44:17-69
+177-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:44:25-66
+178
+179                <category android:name="android.intent.category.DEFAULT" />
+179-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:46:17-76
+179-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:46:27-73
+180                <category android:name="android.intent.category.BROWSABLE" />
+180-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:47:17-78
+180-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:47:27-75
+181
+182                <data
+182-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:49:17-51:50
+183                    android:host="firebase.auth"
+183-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:50:21-56
+184                    android:path="/"
+185                    android:scheme="genericidp" />
+185-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:51:21-47
+186            </intent-filter>
+187        </activity>
+188        <activity
+188-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:47:9-64:20
+189            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+189-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:48:13-79
+190            android:excludeFromRecents="true"
+190-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:49:13-46
+191            android:exported="true"
+191-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:50:13-36
+192            android:launchMode="singleTask"
+192-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:51:13-44
+193            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+193-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:52:13-72
+194            <intent-filter>
+194-->[com.google.firebase:firebase-auth:21.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\30e185151e99fafa1824574da49f94cc\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:53:13-63:29
+195                <action android:name="android.intent.action.VIEW" />
+195-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:44:17-69
+195-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:44:25-66
+196
+197                <category android:name="android.intent.category.DEFAULT" />
+197-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:46:17-76
+197-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:46:27-73
+198                <category android:name="android.intent.category.BROWSABLE" />
+198-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:47:17-78
+198-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:47:27-75
+199
+200                <data
+200-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:49:17-51:50
+201                    android:host="firebase.auth"
+201-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:50:21-56
+202                    android:path="/"
+203                    android:scheme="recaptcha" />
+203-->[com.facebook.android:facebook-common:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\31e786eaf9d448851f2045d9c7ba66cf\transformed\jetified-facebook-common-15.0.2\AndroidManifest.xml:51:21-47
+204            </intent-filter>
+205        </activity>
+206        <activity
+206-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Lifetech\.gradle\caches\transforms-3\082fa8f1e076fd76c98f4d760b4e67b1\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+207            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+207-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Lifetech\.gradle\caches\transforms-3\082fa8f1e076fd76c98f4d760b4e67b1\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+208            android:exported="false"
+208-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Lifetech\.gradle\caches\transforms-3\082fa8f1e076fd76c98f4d760b4e67b1\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+209            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+209-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Lifetech\.gradle\caches\transforms-3\082fa8f1e076fd76c98f4d760b4e67b1\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+210
+211        <provider
+211-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Lifetech\.gradle\caches\transforms-3\ac7b423c18e0e9c28c2a8c784d1125eb\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:25:9-30:39
+212            android:name="com.google.firebase.provider.FirebaseInitProvider"
+212-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Lifetech\.gradle\caches\transforms-3\ac7b423c18e0e9c28c2a8c784d1125eb\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:26:13-77
+213            android:authorities="com.example.task_firebase.firebaseinitprovider"
+213-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Lifetech\.gradle\caches\transforms-3\ac7b423c18e0e9c28c2a8c784d1125eb\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:27:13-72
+214            android:directBootAware="true"
+214-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Lifetech\.gradle\caches\transforms-3\ac7b423c18e0e9c28c2a8c784d1125eb\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:28:13-43
+215            android:exported="false"
+215-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Lifetech\.gradle\caches\transforms-3\ac7b423c18e0e9c28c2a8c784d1125eb\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:29:13-37
+216            android:initOrder="100" />
+216-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Lifetech\.gradle\caches\transforms-3\ac7b423c18e0e9c28c2a8c784d1125eb\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:30:13-36
+217
+218        <meta-data
+218-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\10e411e408063a3ed7eb4e7e19983f6d\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
+219            android:name="com.google.android.gms.version"
+219-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\10e411e408063a3ed7eb4e7e19983f6d\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
+220            android:value="@integer/google_play_services_version" />
+220-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\Lifetech\.gradle\caches\transforms-3\10e411e408063a3ed7eb4e7e19983f6d\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
+221        <!--
+222         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+223         with the application context. This config is merged in with the host app's manifest,
+224         but there can only be one provider with the same authority activated at any given
+225         point; so if the end user has two or more different apps that use Facebook SDK, only the
+226         first one will be able to use the provider. To work around this problem, we use the
+227         following placeholder in the authority to identify each host application as if it was
+228         a completely different provider.
+229        -->
+230        <provider
+230-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:41:9-44:40
+231            android:name="com.facebook.internal.FacebookInitProvider"
+231-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:42:13-70
+232            android:authorities="com.example.task_firebase.FacebookInitProvider"
+232-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:43:13-72
+233            android:exported="false" />
+233-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:44:13-37
+234
+235        <receiver
+235-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:46:9-52:20
+236            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+236-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:47:13-86
+237            android:exported="false" >
+237-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:48:13-37
+238            <intent-filter>
+238-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:49:13-51:29
+239                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+239-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:50:17-95
+239-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:50:25-92
+240            </intent-filter>
+241        </receiver>
+242        <receiver
+242-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:53:9-59:20
+243            android:name="com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver"
+243-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:54:13-118
+244            android:exported="false" >
+244-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:55:13-37
+245            <intent-filter>
+245-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:56:13-58:29
+246                <action android:name="com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED" />
+246-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:57:17-103
+246-->[com.facebook.android:facebook-core:15.0.2] C:\Users\Lifetech\.gradle\caches\transforms-3\6d0406e361f41588bb84217bc9083129\transformed\jetified-facebook-core-15.0.2\AndroidManifest.xml:57:25-100
+247            </intent-filter>
+248        </receiver>
+249
+250        <uses-library
+250-->[androidx.window:window:1.0.0-beta04] C:\Users\Lifetech\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+251            android:name="androidx.window.extensions"
+251-->[androidx.window:window:1.0.0-beta04] C:\Users\Lifetech\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+252            android:required="false" />
+252-->[androidx.window:window:1.0.0-beta04] C:\Users\Lifetech\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+253        <uses-library
+253-->[androidx.window:window:1.0.0-beta04] C:\Users\Lifetech\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+254            android:name="androidx.window.sidecar"
+254-->[androidx.window:window:1.0.0-beta04] C:\Users\Lifetech\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+255            android:required="false" />
+255-->[androidx.window:window:1.0.0-beta04] C:\Users\Lifetech\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+256    </application>
+257
+258</manifest>
