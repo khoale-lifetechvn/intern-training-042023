@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/core/model/post_model.dart';
 import 'package:task_firebase/ui/presentation/login_view/login_view.dart';
-import 'package:task_firebase/ui/presentation/main_view/main_add_view/main_add_view.dart';
-import 'package:task_firebase/ui/presentation/main_view/main_detail_view/main_detail_view.dart';
-import 'package:task_firebase/ui/presentation/main_view/main_manager_view/main_manger_view.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_add_view/post_add_view.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_detail_view/post_detail_view.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_manager_view/post_manger_view.dart';
 import 'package:task_firebase/ui/presentation/register_view/register_view.dart';
 import 'package:task_firebase/ui/presentation/user_view/user_detail_view/user_detail_view.dart';
 import 'package:task_firebase/ui/presentation/user_view/user_view.dart';
 
 class RouterPath {
-  static const String mainAdd = "/mainAdd";
-  static const String mainDetail = "/mainDetail";
-  static const String mainManager = "/mainManager";
+  static const String postAdd = "/postAdd";
+  static const String postDetail = "/postDetail";
+  static const String postManager = "/postManager";
 
   static const String login = "/";
   static const String register = "/register";
@@ -32,15 +32,15 @@ class RouteGenerator {
       case RouterPath.userDetail:
         return MaterialPageRoute(builder: (_) => UserDetailView());
 
-      //Quizz
-      case RouterPath.mainAdd:
-        return MaterialPageRoute(builder: (_) => MainAddView());
-      case RouterPath.mainManager:
-        return MaterialPageRoute(builder: (_) => const MainManagerView());
-      case RouterPath.mainDetail:
+
+      case RouterPath.postAdd:
+        return MaterialPageRoute(builder: (_) => PostAddView());
+      case RouterPath.postManager:
+        return MaterialPageRoute(builder: (_) => const PostManagerView());
+      case RouterPath.postDetail:
         PostModel post = routeSettings.arguments as PostModel;
         return MaterialPageRoute(
-            builder: (_) => MainDetailView(
+            builder: (_) => PostDetailView(
                   model: post,
                 ));
 

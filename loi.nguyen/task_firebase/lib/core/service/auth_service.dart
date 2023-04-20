@@ -150,7 +150,7 @@ class AuthenticationService implements BaseAuth {
     } else {
       logSuccess('Đã lưu data trên firebase trên social media');
       await _addUserToDatabaseBySignIn(
-          name: user.displayName ?? 'NoName',
+          name: user.displayName ?? '',
           uid: user.uid,
           email: user.email ?? '',
           dbo: '');

@@ -27,7 +27,7 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     if (AuthenticationService().getCurrentUser() != null) {
       locator<Singleton>().reloadGlobalUser().whenComplete(() {
-        locator<GetNavigation>().toAndRemoveUntil(RouterPath.mainManager);
+        locator<GetNavigation>().toAndRemoveUntil(RouterPath.postManager);
       });
     }
     super.initState();
