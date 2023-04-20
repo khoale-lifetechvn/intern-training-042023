@@ -122,29 +122,5 @@ class Api {
     return url;
   }
 
-////////////////////////////////////////////////////////////////
-  
-  
 
-  Future<String?> updateDocumentComplexByID(
-      {required String parentID,
-      required String childTable,
-      required String customID,
-      required Map data}) async {
-    try {
-      Map<String, Object> newData = Map.from({
-        ...data,
-        ...{FieldName.updatedAt: DateTime.now()}
-      });
-      //Read data by id and get Collection
-      var childCollection = ref.doc(parentID).collection(childTable);
-      await childCollection.doc(customID).update(Map.from(newData));
-      logSuccess(
-          'Cập nhật data thành công vào bảng $pathCollection > $childTable');
-      return null;
-    } catch (e) {
-      logError('Cập nhật data thất bại: $e');
-      return 'Đã có lỗi xãy ra';
-    }
-  }
 }

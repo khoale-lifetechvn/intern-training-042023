@@ -23,7 +23,7 @@ class PostAddController {
       parentID: locator<Singleton>().userModel.id);
 
   void addPost() async {
-    await api.addDocument(data: {
+    await api.addData(data: {
       FieldName.title: _title,
       FieldName.content: _content,
     }).then((value) {

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/post_model.dart';
-import 'package:task_firebase/core/service/api.dart';
 import 'package:task_firebase/core/service/api_nosql.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';

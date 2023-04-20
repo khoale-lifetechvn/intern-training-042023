@@ -31,7 +31,7 @@ class PostDetailController {
   bool get isAuthor => _postModel.refID == locator<Singleton>().userModel.id;
 
   void updatePost() async {
-    await _api.updateDocument(id: _postModel.id, data: {
+    await _api.updateData(id: _postModel.id, data: {
       FieldName.title: _title,
       FieldName.content: _content,
     }).then((value) => value.backOrNotification());
