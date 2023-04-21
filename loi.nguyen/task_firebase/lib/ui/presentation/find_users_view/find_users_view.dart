@@ -9,10 +9,9 @@ import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 import 'package:task_firebase/ui/presentation/find_users_view/components/find_users_list.dart';
 
 class FindUsersView extends StatefulWidget {
-  const FindUsersView({Key? key}) : super(key: key);
-
+  const FindUsersView({super.key});
   @override
-  _FindUsersViewState createState() => _FindUsersViewState();
+  State<FindUsersView> createState() => _FindUsersViewState();
 }
 
 class _FindUsersViewState extends State<FindUsersView> {
