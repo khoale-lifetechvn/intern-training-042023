@@ -22,3 +22,20 @@ extension CopnvertDocument on DocumentSnapshot<Object?> {
     return temp;
   }
 }
+
+extension QuerySnapshotToList on QuerySnapshot<Object?>? {
+  List<Map<String, dynamic>> toListMapCustom() {
+    List<Map<String, dynamic>> temp = [];
+    if (this != null) {
+      for (var e in this!.docs) {
+        Map<String, dynamic> currentValue = e.data() as Map<String, dynamic>;
+        currentValue['id'] = e.id;
+        //UserID
+        currentValue['refID'] = e.reference.parent.parent!.id;
+        temp.add(currentValue);
+      }
+    }
+    return temp;
+  }
+}
+

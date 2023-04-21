@@ -37,6 +37,10 @@ class PostDetailController {
     }).then((value) => value.backOrNotification());
   }
 
+  void deletePost()async{
+   await  _api.removeData( _postModel.id).then((value) => value.backOrNotification());
+   }
+
   Future<DocumentSnapshot<Object?>> loadData() {
     Api apiUser = Api(BaseTable.users);
     return apiUser.ref.doc(_postModel.refID).get();

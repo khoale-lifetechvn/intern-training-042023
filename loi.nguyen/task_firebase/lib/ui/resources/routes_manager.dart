@@ -44,7 +44,7 @@ class RouteGenerator {
 
       //FindUser
       case RouterPath.findUsers:
-        return MaterialPageRoute(builder: (_) => FindUsersView());
+        return MaterialPageRoute(builder: (_) => const FindUsersView());
 
       //Posts
       case RouterPath.postAdd:

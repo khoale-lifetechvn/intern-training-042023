@@ -63,7 +63,8 @@ class Methods {
 
   static String getString(Map data, String fieldName,
       {String defaultValue = ''}) {
-    return data.find(fieldName, (value) => value, defaultValue: defaultValue);
+    return data.find(fieldName, (value) => value.toString(),
+        defaultValue: defaultValue);
   }
 
   static bool getBool(Map data, String fieldName, {bool defaultValue = false}) {

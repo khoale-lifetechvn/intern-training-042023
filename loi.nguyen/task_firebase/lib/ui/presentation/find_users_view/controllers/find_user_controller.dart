@@ -1,26 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:task_firebase/core/extension/methods.dart';
-import 'package:task_firebase/core/model/base_table.dart';
-import 'package:task_firebase/core/model/field_name.dart';
-import 'package:task_firebase/core/model/user_model.dart';
-import 'package:task_firebase/core/service/api.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/ui/base/base_controller.dart';
 
-class FindUserViewController extends BaseController {
-  final Api _apiUser = Api(BaseTable.users);
+class FindUserController extends BaseController {
+  String myID = locator<Singleton>().userModel.id;
 
-  List<UserModel> get listUser {
-    //Remove myUser
-    data.removeWhere((e) =>
-        Methods.getString(e, FieldName.id) ==
-        locator<Singleton>().userModel.id);
-    return data.map((e) => UserModel(e)).toList();
+  // Future for fetching all users
+  Future<List<DocumentSnapshot>> getUsers() async {
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('users').get();
+    return snapshot.docs;
   }
 
-  @override
-  Future<QuerySnapshot<Object?>?>? loadData() {
-    return _apiUser.getDataCollection();
+// Stream for getting the list of users that the current user is following
+  Stream<List<String>> getFollowing(String userID) {
+    return FirebaseFirestore.instance
+        .collection('following')
+        .doc(userID)
+        .collection('userFollowing')
+        .snapshots()
+        .map((querySnapshot) =>
+            querySnapshot.docs.map((doc) => doc.id).toList());
   }
 }

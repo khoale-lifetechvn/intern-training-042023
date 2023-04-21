@@ -46,6 +46,17 @@ class ApiNosql {
     return ref.snapshots();
   }
 
+  Future<String?> removeData(String id) async {
+    try {
+      await ref.doc(id).delete();
+      logSuccess('Xóa data thành công:  $parentTable > $childTable');
+      return null;
+    } catch (e) {
+      logSuccess('Xóa dữ liệu thất bại:  $parentTable > $childTable');
+      return 'Xóa dữ liệu thất bại';
+    }
+  }
+
   Future<String?> updateData({required String id, required Map data}) async {
     try {
       Map<String, Object> newData = Map.from({
@@ -66,14 +77,18 @@ class ApiNosql {
   ///Add or remove if document show
   Future<String?> addDocumentNN({required String id}) async {
     try {
-      //Read data by id and get Collection
       if (await isExists(id)) {
-        ref.doc(id).delete();
-        return 'false';
+        await ref.doc(id).delete();
+        logInfo('Remove documentID thành công ');
       } else {
-        ref.doc(id).set({});
-        return 'true';
+        Map<String, Object> newData = Map.from({
+          FieldName.createdAt: DateTime.now(),
+          FieldName.updatedAt: DateTime.now()
+        });
+        await ref.doc(id).set(newData);
+        logInfo('Add documentID thành công ');
       }
+      return null;
     } catch (e) {
       logError('Thêm data thất bại: $e');
       return 'Đã có lỗi xãy ra';
@@ -89,6 +104,7 @@ class ApiNosql {
       }
     }).catchError((error) {
       logError('Error getting document: $error');
+      return false;
     });
   }
 }

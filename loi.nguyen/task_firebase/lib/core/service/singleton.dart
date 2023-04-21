@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/model/base_table.dart';
@@ -9,7 +10,16 @@ import 'package:task_firebase/core/extension/extension.dart';
 class Singleton {
   UserModel _userModel = UserModel({});
 
+  final List<UserModel> _listUser = [];
+
   UserModel get userModel => _userModel;
+
+  List<UserModel> get listUser => _listUser;
+
+  Future<QuerySnapshot> loadListUser() {
+    Api api = Api(BaseTable.users);
+    return api.getDataCollection();
+  }
 
   Future<void> reloadGlobalUser() async {
     Api api = Api(BaseTable.users);
@@ -19,6 +29,4 @@ class Singleton {
     _userModel = UserModel(data.toMap());
     logSuccess('Reload lại data global user thành công');
   }
-
-  
 }

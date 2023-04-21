@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/ui/base_widget/search_item.dart';
+import 'package:task_firebase/ui/presentation/find_users_view/components/controller/find_user_list_controller.dart';
 import 'package:task_firebase/ui/resources/assets_manager.dart';
 import 'package:task_firebase/ui/resources/color_manager.dart';
 import 'package:task_firebase/ui/resources/styles_manager.dart';
@@ -17,11 +18,24 @@ class _FindUserListState extends State<FindUserList> {
   late List<UserModel> allUser;
   List<UserModel> currentUsers = [];
 
+  FindUserListController controller = FindUserListController();
+
   @override
   void initState() {
+    getData();
+    super.initState();
+  }
+
+  void getData() {
+    currentUsers.clear();
     allUser = widget.list;
     currentUsers.addAll(widget.list);
-    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant FindUserList oldWidget) {
+    getData();
+    super.didUpdateWidget(oldWidget);
   }
 
   void findUsers(String keyword) {
@@ -59,13 +73,13 @@ class _FindUserListState extends State<FindUserList> {
     );
   }
 
-  bool isFollow = false;
-
   Widget itemUser({required UserModel model}) {
     return ListTile(
       leading: Image.asset(ImageAssets.mewo),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      trailing: isFollow
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: ColorManager.black, width: 0.4)),
+      trailing: model.userFollowing.isFollow
           ? Icon(
               Icons.favorite,
               color: ColorManager.red,
@@ -79,7 +93,9 @@ class _FindUserListState extends State<FindUserList> {
         'Email: ${model.email}',
         style: getLabelText(),
       ),
-      onTap: () {},
+      onTap: () {
+        controller.updateFollow(model.id);
+      },
     );
   }
 }

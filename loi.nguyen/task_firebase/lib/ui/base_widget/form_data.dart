@@ -11,12 +11,16 @@ class FormData extends StatelessWidget {
   final String? titleButton;
   final List<Widget> list;
   final bool isFullScreen;
+  final bool disable;
+  final Function()? onDelete;
 
   FormData(
       {super.key,
       this.title,
       this.titleButton,
+      this.onDelete,
       this.isFullScreen = false,
+      this.disable = false,
       required this.onSubmit,
       required this.list});
 
@@ -56,9 +60,13 @@ class FormData extends StatelessWidget {
                   children: list,
                 ),
                 SizedBox(height: isFullScreen ? 80 : 8),
-                LFButton(
-                  onPressed: onSubmitForm,
-                )
+                if (!disable) ...[
+                  onDelete == null
+                      ? LFButton(
+                          onPressed: onSubmitForm,
+                        )
+                      : delete()
+                ]
               ],
             ),
           ),
@@ -68,6 +76,22 @@ class FormData extends StatelessWidget {
             top: -15,
             child: Label(title!),
           )
+      ],
+    );
+  }
+
+  Widget delete() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        LFButton(
+          onPressed: onSubmitForm,
+        ),
+        LFButton(
+          onPressed: onDelete,
+          title: 'Delete',
+          color: ColorManager.red,
+        )
       ],
     );
   }

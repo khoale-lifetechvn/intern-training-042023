@@ -3,6 +3,7 @@ import 'package:task_firebase/core/service/get_navigation.dart';
 import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_manager_view/post_manager_all/post_manager_all.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_manager_view/post_manager_by_follow/post_manger_by_follow.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_manager_view/post_manager_by_user/post_manager_by_user.dart';
 import 'package:task_firebase/ui/resources/routes_manager.dart';
 
@@ -19,7 +20,7 @@ class _PostManagerViewState extends State<PostManagerView>
   Widget build(BuildContext context) {
     super.build(context);
     return DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: LFAppBar(
             title: 'Manager Posts',
@@ -30,6 +31,10 @@ class _PostManagerViewState extends State<PostManagerView>
                   text: "My posts",
                 ),
                 Tab(
+                  icon: Icon(Icons.follow_the_signs_sharp),
+                  text: "Following",
+                ),
+                Tab(
                   icon: Icon(Icons.groups_outlined),
                   text: "All posts",
                 ),
@@ -37,7 +42,11 @@ class _PostManagerViewState extends State<PostManagerView>
             ),
           ),
           body: const TabBarView(
-            children: [PostMangerByUser(), PostMangerAll()],
+            children: [
+              PostMangerByUser(),
+              PostMangerByFollow(),
+              PostMangerAll(),
+            ],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
