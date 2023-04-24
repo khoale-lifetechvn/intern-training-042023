@@ -7,6 +7,7 @@ class PostModel extends BaseModel {
 
   String get title => Methods.getString(data, FieldName.title);
   String get content => Methods.getString(data, FieldName.content);
+  ///Id user
   String get refID => Methods.getString(data, FieldName.refID);
 
 

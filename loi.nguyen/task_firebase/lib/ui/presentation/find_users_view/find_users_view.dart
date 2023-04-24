@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/user_following_model.dart';
 import 'package:task_firebase/core/model/user_model.dart';
-import 'package:task_firebase/ui/base/base_controller.dart';
 import 'package:task_firebase/core/extension/extension.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 import 'package:task_firebase/ui/presentation/find_users_view/components/find_users_list.dart';

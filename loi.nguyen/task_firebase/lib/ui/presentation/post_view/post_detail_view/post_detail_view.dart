@@ -4,18 +4,15 @@ import 'package:task_firebase/core/model/post_comment_model.dart';
 import 'package:task_firebase/core/model/post_model.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/ui/base_widget/base_skeleton.dart';
-import 'package:task_firebase/ui/base_widget/form_data.dart';
-import 'package:task_firebase/ui/base_widget/with_spacing.dart';
-import 'package:task_firebase/ui/presentation/post_view/base_post_view.dart';
+import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/comment_list.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/post_detail_edit.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/text_field_comment.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/controller/post_detail_controller.dart';
-import 'package:task_firebase/ui/base_widget/lf_text_field.dart';
-import 'package:task_firebase/core/extension/extension.dart';
 import 'package:task_firebase/ui/resources/color_manager.dart';
 import 'package:task_firebase/ui/resources/styles_manager.dart';
 
-class PostDetailView extends BasePostView {
+class PostDetailView extends StatelessWidget {
   PostDetailView({super.key, required this.model}) {
     controller = PostDetailController(model);
   }
@@ -24,100 +21,67 @@ class PostDetailView extends BasePostView {
   late final UserModel user;
 
   @override
-  String get titleAppbar => 'Dettail quizz';
-
-  Widget infoWidget() {
-    return FutureBuilder<DocumentSnapshot<Object?>>(
-        future: controller.loadData(),
-        builder: (_, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else if (!snapshot.hasData) {
-            return const Text('No data');
-          } else {
-            user = UserModel(snapshot.data!.toMap());
-            String username =
-                controller.isAuthor ? '${user.name} (Myself)' : user.name;
-            return ColumnWithSpacing(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Author: $username',
-                  style: getLabelText(),
-                ),
-                Text('Email: ${user.email}', style: getLabelText()),
-                Text('Created At: ${model.createdAt}', style: getLabelText()),
-                Text('Updated At: ${model.updatedAt}', style: getLabelText()),
-              ],
-            );
-          }
-        });
+  Widget build(BuildContext context) {
+    return controller.isAuthor
+        ? PostDetailEdit(postModel: model)
+        : someonePost(context);
   }
 
-  List<Widget> get listTextField => [
-        LFTextFormField(
-          label: 'Title',
-          initValue: model.title,
-          onSaved: (p0) => controller.title = p0,
+  Widget someonePost(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: LFAppBar(title: 'Detail Post'),
+        body: ListView(
+          children: [
+            image(context),
+            Divider(color: ColorManager.greyBG, thickness: 0.3),
+            content(),
+            Divider(color: ColorManager.greyBG, thickness: 0.3),
+            comment(),
+          ],
         ),
-        LFTextFormField(
-          label: 'Content',
-          initValue: model.content,
-          disable: controller.isAuthor == false,
-          maxLines: null,
-        ),
-      ];
-
-  @override
-  Widget get body => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Information',
-            style: getTitleText(),
-          ),
-          const SizedBox(height: 24),
-          infoWidget(),
-          const SizedBox(height: 32),
-          controller.isAuthor
-              ? FormData(
-                  onSubmit: () {
-                    controller.updatePost();
-                  },
-                  list: listTextField,
-                  onDelete: () => controller.deletePost(),
-                )
-              : content(),
-        ],
-      );
-
-  Widget content() {
-    return Column(
-      children: [
-        Divider(color: ColorManager.black, height: 0.4),
-        const SizedBox(height: 16),
-        Text(
-          'Title: ${model.title}',
-          style: getTitleText(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          model.title,
-          style: getLabelText(),
-        ),
-        Divider(color: ColorManager.black, height: 0.4),
-        const SizedBox(height: 16),
-        comment()
-      ],
+        bottomSheet: TextFieldComment(onSubmit: (text) {
+          controller.postCommnet(text);
+        }),
+      ),
     );
   }
 
-  @override
-  Widget? get bottomSheet => TextFieldComment(onSubmit: (text) {
-        controller.postCommnet(text);
-      });
+  Widget content() {
+    String title = '${model.title}( ${controller.userPost.name} )';
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: getTitleText(),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Updated At: ${model.updatedAt}',
+            style: getLabelText(),
+          ),
+          //Desc
+          const SizedBox(height: 16),
+          Text(
+            model.content,
+            style: getLabelText(color: ColorManager.greyForm),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget image(BuildContext context) {
+    return Image.network(
+        'https://xuyenvietmedia.com/wp-content/uploads/2022/11/Topic-la-gi-1.jpg',
+        height: 200);
+  }
 
   Widget comment() {
     return StreamBuilder(
@@ -141,13 +105,16 @@ class PostDetailView extends BasePostView {
             controller.setDataComment(data);
             List<PostCommentModel> list = controller.listComment;
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Comment ${list.length}'),
-                const SizedBox(height: 16),
-                CommentList(listCommnent: list)
-              ],
+            return Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 80),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Comment ${list.length}'),
+                  const SizedBox(height: 16),
+                  CommentList(listCommnent: list)
+                ],
+              ),
             );
           }
         });

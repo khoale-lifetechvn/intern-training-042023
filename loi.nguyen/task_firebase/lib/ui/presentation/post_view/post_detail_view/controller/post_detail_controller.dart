@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/extension/methods.dart';
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/extension/extension.dart';
 import 'package:task_firebase/core/model/field_name.dart';
 import 'package:task_firebase/core/model/post_comment_model.dart';
 import 'package:task_firebase/core/model/post_model.dart';
+import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/core/service/api.dart';
 import 'package:task_firebase/core/service/api_nosql.dart';
 import 'package:task_firebase/core/service/get_navigation.dart';
@@ -60,6 +60,15 @@ class PostDetailController {
     return apiUser.ref.doc(_postModel.refID).get();
   }
 
+  UserModel get userPost {
+    for (var e in locator<Singleton>().listUser) {
+      if (e.id == _postModel.refID) {
+        return e;
+      }
+    }
+    return UserModel({});
+  }
+
   ///COMMENT
   String get postID => _postModel.id;
 
@@ -67,7 +76,9 @@ class PostDetailController {
 
   //Get post comment order by desc
   Stream<QuerySnapshot<Object?>> streamComment() {
-    return _apiPostComment.ref.orderBy(FieldName.createdAt).snapshots();
+    return _apiPostComment.ref
+        .orderBy(FieldName.createdAt, descending: true)
+        .snapshots();
   }
 
   void postCommnet(String comment) {
