@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:task_firebase/core/model/post_comment_model.dart';
 import 'package:task_firebase/core/model/post_model.dart';
 import 'package:task_firebase/core/model/user_model.dart';
+import 'package:task_firebase/ui/base_widget/base_skeleton.dart';
 import 'package:task_firebase/ui/base_widget/form_data.dart';
 import 'package:task_firebase/ui/base_widget/with_spacing.dart';
 import 'package:task_firebase/ui/presentation/post_view/base_post_view.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/comment_list.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/text_field_comment.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/controller/post_detail_controller.dart';
 import 'package:task_firebase/ui/base_widget/lf_text_field.dart';
 import 'package:task_firebase/core/extension/extension.dart';
@@ -85,7 +89,7 @@ class PostDetailView extends BasePostView {
                   list: listTextField,
                   onDelete: () => controller.deletePost(),
                 )
-              : content()
+              : content(),
         ],
       );
 
@@ -102,8 +106,50 @@ class PostDetailView extends BasePostView {
         Text(
           model.title,
           style: getLabelText(),
-        )
+        ),
+        Divider(color: ColorManager.black, height: 0.4),
+        const SizedBox(height: 16),
+        comment()
       ],
     );
+  }
+
+  @override
+  Widget? get bottomSheet => TextFieldComment(onSubmit: (text) {
+        controller.postCommnet(text);
+      });
+
+  Widget comment() {
+    return StreamBuilder(
+        stream: controller.streamComment(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const BaseSkeleton(content: 'Loading comment...');
+          } else if (snapshot.hasError) {
+            return const BaseSkeleton(content: 'Error when load comment');
+          } else {
+            QuerySnapshot<Object?>? data = snapshot.data;
+
+            if (data!.docs.isEmpty) {
+              return Center(
+                child: Text(
+                  'No comment',
+                  style: getTitleText(),
+                ),
+              );
+            }
+            controller.setDataComment(data);
+            List<PostCommentModel> list = controller.listComment;
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Comment ${list.length}'),
+                const SizedBox(height: 16),
+                CommentList(listCommnent: list)
+              ],
+            );
+          }
+        });
   }
 }

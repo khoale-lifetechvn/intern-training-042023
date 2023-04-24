@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 
 abstract class BasePostView extends StatelessWidget {
-  const BasePostView({
+  BasePostView({
     Key? key,
   }) : super(key: key);
   String get titleAppbar;
@@ -11,14 +11,18 @@ abstract class BasePostView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: LFAppBar(title: titleAppbar),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: body,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: body,
+        ),
       ),
+      bottomSheet: bottomSheet,
     );
   }
+
+ late  Widget? bottomSheet;
 
   Widget get body;
 }

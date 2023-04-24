@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 import 'package:task_firebase/core/model/field_name.dart';
 import 'package:task_firebase/core/service/get_navigation.dart';
 import 'package:task_firebase/locator.dart';
@@ -37,5 +38,35 @@ extension QuerySnapshotToList on QuerySnapshot<Object?>? {
     }
     return temp;
   }
+
+  List<Map<String, dynamic>> toListMap() {
+    List<Map<String, dynamic>> temp = [];
+    if (this != null) {
+      for (var e in this!.docs) {
+        Map<String, dynamic> currentValue = e.data() as Map<String, dynamic>;
+        currentValue['id'] = e.id;
+        temp.add(currentValue);
+      }
+    }
+    return temp;
+  }
 }
 
+extension DateTimeExtensions on DateTime {
+  String toRelativeTime() {
+    final now = DateTime.now();
+    final difference = now.difference(this);
+
+    if (difference.inDays > 0) {
+      return DateFormat.yMMMMd().format(this);
+    } else if (difference.inHours > 0) {
+      final hours = difference.inHours;
+      return '$hours hour${hours > 1 ? 's' : ''} ago';
+    } else if (difference.inMinutes > 0) {
+      final minutes = difference.inMinutes;
+      return '$minutes minute${minutes > 1 ? 's' : ''} ago';
+    } else {
+      return 'just now';
+    }
+  }
+}

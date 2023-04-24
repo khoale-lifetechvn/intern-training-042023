@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/ui/base/base_view.dart';
-import 'package:task_firebase/ui/base_widget/lf_button.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_manager_view/components/post_manager_list.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_manager_view/post_manager_by_follow/controller/post_manager_by_follow_controller.dart';
 
@@ -29,29 +28,22 @@ class _PostMangerByFollowT extends BaseView<PostManagerByFollowController> {
   @override
   Widget getMainView(
       BuildContext context, PostManagerByFollowController controller) {
-    return Column(
-      children: [
-        LFButton(
-          onPressed: () => {controller.test()},
-        ),
-        StreamBuilder(
-            stream: controller.loadStreamFollowPost(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return getSkeletonView(context, controller);
-              } else if (snapshot.hasError) {
-                return getWarningView('Có lỗi xãy ra => api không chính xác');
-              } else {
-                if (snapshot.data!.docs.isEmpty) {
-                  return getEmtpyView();
-                }
-                return Expanded(
-                  child: PostManagerList(
-                      list: controller.getListPort(snapshot.data)),
-                );
-              }
-            }),
-      ],
-    );
+    return StreamBuilder(
+        stream: controller.loadStreamFollowPost(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return getSkeletonView(context, controller);
+          } else if (snapshot.hasError) {
+            return getWarningView('Có lỗi xãy ra => api không chính xác');
+          } else {
+            if (snapshot.data!.docs.isEmpty) {
+              return getEmtpyView();
+            }
+            return Expanded(
+              child:
+                  PostManagerList(list: controller.getListPort(snapshot.data)),
+            );
+          }
+        });
   }
 }

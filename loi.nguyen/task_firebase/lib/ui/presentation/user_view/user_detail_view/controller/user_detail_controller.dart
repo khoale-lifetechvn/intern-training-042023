@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/field_name.dart';
 import 'package:task_firebase/core/model/user_model.dart';
@@ -11,6 +13,7 @@ class UserDetailController {
 
   String? _name;
   String? _dbo;
+  File? _file;
 
   UserModel get user => locator<Singleton>().userModel;
 
@@ -22,9 +25,13 @@ class UserDetailController {
     _dbo = value;
   }
 
+   set file(File? value) {
+    _file = value;
+  }
+
   void updateUser() async {
-    await _api.updateDocument({FieldName.name: _name, FieldName.dbo: _dbo},
-        locator<Singleton>().userModel.id);
+    await _api.updateDocument({FieldName.name: _name, FieldName.dbo: _dbo, },
+        locator<Singleton>().userModel.id, file: _file);
     await locator<Singleton>().reloadGlobalUser().whenComplete(() {
       locator<GetNavigation>().back();
     });

@@ -7,7 +7,6 @@ import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 import 'package:task_firebase/ui/base_widget/lf_button_submit.dart';
 import 'package:task_firebase/ui/base_widget/with_spacing.dart';
-import 'package:task_firebase/ui/resources/assets_manager.dart';
 import 'package:task_firebase/ui/resources/color_manager.dart';
 import 'package:task_firebase/ui/resources/routes_manager.dart';
 import 'package:task_firebase/ui/resources/styles_manager.dart';
@@ -25,18 +24,26 @@ class _UserViewState extends State<UserView> {
   late String _dbo;
   late String _createdAt;
   late String _updatedAt;
+  late String _img;
   late UserModel user;
 
   final AuthenticationService _auth = AuthenticationService();
   @override
   void initState() {
     super.initState();
+    initData();
+  }
+
+  void initData() {
     user = locator<Singleton>().userModel;
     _userName = getText(user.name);
     _email = getText(user.email);
     _dbo = getText(user.dbo);
     _createdAt = getText(user.createdAt);
     _updatedAt = getText(user.updatedAt);
+    _img = user.img.isEmpty
+        ? 'https://cdn-icons-png.flaticon.com/512/1946/1946429.png'
+        : user.img;
   }
 
   String getText(String abc) {
@@ -54,9 +61,14 @@ class _UserViewState extends State<UserView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CircleAvatar(
-              radius: 80,
-              child: Image.asset(ImageAssets.user),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: Image.network(
+                _img,
+                fit: BoxFit.contain,
+                height: 100,
+                width: 100,
+              ),
             ),
             const SizedBox(height: 32),
             info()
@@ -74,8 +86,7 @@ class _UserViewState extends State<UserView> {
                   .to(RouterPath.userDetail)
                   .whenComplete(() {
                 setState(() {
-                  _userName = locator<Singleton>().userModel.name;
-                  _dbo = locator<Singleton>().userModel.dbo;
+                  initData();
                 });
               });
             },

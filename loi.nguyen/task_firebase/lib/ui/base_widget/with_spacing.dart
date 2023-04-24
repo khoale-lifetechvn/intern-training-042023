@@ -10,17 +10,17 @@ class ColumnWithSpacing extends Column {
       super.textDirection,
       super.verticalDirection,
       double spacing = 16,
+      Widget? separator,
       List<Widget> children = const <Widget>[]})
       : super(
           children: children.insertBetweenAll(
-            SizedBox(height: spacing),
+            separator ?? SizedBox(height: spacing),
           ),
         );
 }
 
-
-class RowWithSpacing extends Row{
-   RowWithSpacing(
+class RowWithSpacing extends Row {
+  RowWithSpacing(
       {super.crossAxisAlignment,
       super.key,
       super.mainAxisAlignment,

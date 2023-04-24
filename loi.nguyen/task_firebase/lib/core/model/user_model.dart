@@ -9,6 +9,8 @@ class UserModel extends BaseModel {
 
   String get name => Methods.getString(data, FieldName.name);
 
+  String get showName => name.isEmpty ? 'No Name' : name;
+
   String get email => Methods.getString(data, FieldName.email);
 
   String get dbo => Methods.getString(data, FieldName.dbo);

@@ -21,6 +21,11 @@ class Singleton {
     return api.getDataCollection();
   }
 
+  set listUser(List<UserModel> list) {
+    _listUser.clear();
+    _listUser.addAll(list);
+  }
+
   Future<void> reloadGlobalUser() async {
     Api api = Api(BaseTable.users);
     User? user = AuthenticationService().getCurrentUser();

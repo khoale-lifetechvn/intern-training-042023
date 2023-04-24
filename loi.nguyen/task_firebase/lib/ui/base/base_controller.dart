@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
+import 'package:task_firebase/core/extension/extension.dart';
 
 
 abstract class BaseController extends ChangeNotifier {
@@ -32,16 +33,3 @@ abstract class BaseController extends ChangeNotifier {
   }
 }
 
-extension QuerySnapshotToList on QuerySnapshot<Object?>? {
-  List<Map<String, dynamic>> toListMap() {
-    List<Map<String, dynamic>> temp = [];
-    if (this != null) {
-      for (var e in this!.docs) {
-        Map<String, dynamic> currentValue = e.data() as Map<String, dynamic>;
-        currentValue['id'] = e.id;
-        temp.add(currentValue);
-      }
-    }
-    return temp;
-  }
-}

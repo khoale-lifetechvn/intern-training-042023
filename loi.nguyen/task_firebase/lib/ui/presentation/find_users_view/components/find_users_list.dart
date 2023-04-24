@@ -75,7 +75,9 @@ class _FindUserListState extends State<FindUserList> {
 
   Widget itemUser({required UserModel model}) {
     return ListTile(
-      leading: Image.asset(ImageAssets.mewo),
+      leading: model.img.isEmpty
+          ? Image.asset(ImageAssets.mewo)
+          : Image.network(model.img),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: BorderSide(color: ColorManager.black, width: 0.4)),

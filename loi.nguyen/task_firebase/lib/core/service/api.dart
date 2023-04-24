@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:path/path.dart';
 import 'package:task_firebase/core/extension/log.dart';
+import 'package:task_firebase/core/extension/methods.dart';
 import 'package:task_firebase/core/model/field_name.dart';
 
 class Api {
@@ -79,9 +80,13 @@ class Api {
       if (file != null) {
         try {
           //Remove file
-          String currentDirectory =
-              '$pathCollection/${FirebaseStorage.instance.refFromURL(data['img'] as String).name}';
-          await storage.ref().child(currentDirectory).delete();
+          String img = Methods.getString(data, FieldName.img);
+          if (img.isNotEmpty) {
+            String currentDirectory =
+                '$pathCollection/${FirebaseStorage.instance.refFromURL(data['img'] as String).name}';
+            await storage.ref().child(currentDirectory).delete();
+          }
+
           //upload new file
 
           String pathFile =
@@ -121,6 +126,4 @@ class Api {
     String url = await (await uploadTask).ref.getDownloadURL();
     return url;
   }
-
-
 }

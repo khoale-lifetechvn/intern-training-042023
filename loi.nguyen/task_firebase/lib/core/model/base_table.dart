@@ -5,4 +5,6 @@ class BaseTable {
   static const String userPosts = 'userPosts';
   static const String following = 'following';
   static const String userFollowing = 'userFollowing';
+  static const String comments = 'comments';
+  static const String postComments = 'postComments';
 }

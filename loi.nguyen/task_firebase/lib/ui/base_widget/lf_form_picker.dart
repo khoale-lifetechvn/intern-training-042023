@@ -30,7 +30,7 @@ class LFFormPicker extends FormField<File> {
             builder: (state) {
               _ButtonPickerImageFormFieldState field =
                   state as _ButtonPickerImageFormFieldState;
-              return urlInit == null || state.value != null
+              return urlInit == null || state.value != null || urlInit.isEmpty
                   ? _ItemButtonPicker(state)
                   : field.loadFile(urlInit, state: state);
             });

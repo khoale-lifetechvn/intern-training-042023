@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:task_firebase/ui/base_widget/form_data.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
+import 'package:task_firebase/ui/base_widget/lf_form_picker.dart';
 import 'package:task_firebase/ui/base_widget/lf_text_field.dart';
 import 'package:task_firebase/ui/presentation/user_view/user_detail_view/controller/user_detail_controller.dart';
 
@@ -38,5 +39,9 @@ class UserDetailView extends StatelessWidget {
           maxLines: null,
           onSaved: (p0) => controller.dbo = p0,
         ),
+        LFFormPicker(
+          urlInit: controller.user.img,
+          onSaved: (p0) => controller.file = p0,
+        )
       ];
 }
