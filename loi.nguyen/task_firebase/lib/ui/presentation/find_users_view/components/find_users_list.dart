@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:task_firebase/core/extension/enum.dart';
+import 'package:task_firebase/core/extension/log.dart';
+import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/user_model.dart';
+import 'package:task_firebase/core/service/api_nosql.dart';
 import 'package:task_firebase/core/service/get_navigation.dart';
+import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
+import 'package:task_firebase/ui/base_widget/lf_dialog.dart';
 import 'package:task_firebase/ui/base_widget/search_item.dart';
 import 'package:task_firebase/ui/resources/assets_manager.dart';
 import 'package:task_firebase/ui/resources/color_manager.dart';
@@ -32,6 +38,24 @@ class _FindUserListState extends State<FindUserList> {
     currentUsers.addAll(widget.list);
   }
 
+  void updateFollow(String userID) {
+    final ApiNosql apiNosql = ApiNosql(
+        parentTable: BaseTable.following,
+        parentID: userID,
+        childTable: BaseTable.userFollowing);
+    apiNosql.addDocumentNN(id: locator<Singleton>().userModel.id).then((value) {
+      if (value == Status.add.name) {
+        locator<GetNavigation>().openDialog(
+            content: 'Follow Successfully', typeDialog: TypeDialog.sucesss);
+      } else if (value == Status.remove.name) {
+        locator<GetNavigation>().openDialog(
+            content: 'Unfollow Successfully', typeDialog: TypeDialog.sucesss);
+      } else {
+        locator<GetNavigation>().openDialog(content: value);
+      }
+    });
+  }
+
   @override
   void didUpdateWidget(covariant FindUserList oldWidget) {
     getData();
@@ -53,7 +77,7 @@ class _FindUserListState extends State<FindUserList> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
       child: Column(
         children: [
           SearchItem(
@@ -65,7 +89,8 @@ class _FindUserListState extends State<FindUserList> {
           Expanded(
             child: ListView.separated(
               itemCount: currentUsers.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 16),
+              separatorBuilder: (_, __) => Divider(
+                  height: 16, color: ColorManager.greyBG, thickness: 0.4),
               itemBuilder: (_, index) => itemUser(
                 model: currentUsers[index],
               ),
@@ -81,12 +106,20 @@ class _FindUserListState extends State<FindUserList> {
       leading: model.img.isEmpty
           ? AspectRatio(aspectRatio: 1, child: Image.asset(ImageAssets.mewo))
           : AspectRatio(aspectRatio: 1, child: Image.network(model.img)),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: BorderSide(color: ColorManager.black, width: 0.4)),
       title: Text(
         model.showName,
         style: getTitleText(),
+      ),
+      trailing: IconButton(
+        onPressed: () {
+          updateFollow(model.id);
+        },
+        icon: model.isFollow
+            ? Icon(
+                Icons.favorite,
+                color: ColorManager.red,
+              )
+            : const Icon(Icons.favorite_border),
       ),
       subtitle: Text(
         'Email: ${model.email}',

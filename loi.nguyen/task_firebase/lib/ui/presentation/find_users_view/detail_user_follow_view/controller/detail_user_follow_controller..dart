@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:task_firebase/core/extension/enum.dart';
+import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/model/base_table.dart';
-import 'package:task_firebase/core/model/post_model.dart';
 import 'package:task_firebase/core/model/user_following_model.dart';
 import 'package:task_firebase/core/service/api_nosql.dart';
 import 'package:task_firebase/core/service/get_navigation.dart';
@@ -24,8 +24,6 @@ class DetailUserFollowController extends BaseController {
   List<UserFollowingModel> get listIdUserFollow =>
       data.map((e) => UserFollowingModel(e)).toList();
 
- 
-
   bool get isFollow {
     for (var e in listIdUserFollow) {
       if (e.id == locator<Singleton>().userModel.id) {
@@ -34,7 +32,6 @@ class DetailUserFollowController extends BaseController {
     }
     return false;
   }
-
 
   @override
   Stream<QuerySnapshot<Object?>?>? loadDataStream() {
@@ -58,5 +55,4 @@ class DetailUserFollowController extends BaseController {
   }
 
   //----------------------------------------//
- 
 }

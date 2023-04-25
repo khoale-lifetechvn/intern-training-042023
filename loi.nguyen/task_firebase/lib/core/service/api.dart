@@ -5,8 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:path/path.dart';
+import 'package:task_firebase/core/extension/extension.dart';
 import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/extension/methods.dart';
+import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/field_name.dart';
 
 class Api {
@@ -125,5 +127,71 @@ class Api {
     UploadTask uploadTask = storage.ref(pathFile).putFile(file);
     String url = await (await uploadTask).ref.getDownloadURL();
     return url;
+  }
+
+  //
+  Future<List<Map<String, dynamic>>> getDataCollection1N(
+      {required String bTable, String? bChildTable}) async {
+    QuerySnapshot listMain = await ref.get();
+    CollectionReference bTableCollection =
+        FirebaseFirestore.instance.collection(bTable);
+
+    List<Map<String, dynamic>> data = [];
+    for (var eMain in listMain.toListMap()) {
+      String idMainTable = Methods.getString(eMain, FieldName.id);
+      late QuerySnapshot bSnapshot;
+      if (bChildTable != null) {
+        bSnapshot = await bTableCollection
+            .doc(idMainTable)
+            .collection(bChildTable)
+            .get();
+      } else {
+        bSnapshot = await bTableCollection.get();
+      }
+      bChildTable == null
+          ? eMain[bTable] = bSnapshot.toListMap()
+          : eMain[bChildTable] = bSnapshot.toListMap();
+      //Add to data
+      data.add(eMain);
+    }
+
+    return data;
+  }
+
+  StreamController<List<Map<String, dynamic>>> controller =
+      StreamController<List<Map<String, dynamic>>>();
+
+  Stream<List<Map<String, dynamic>>> streamDataCollection1N(
+      {required String bTable, String? bChildTable}) {
+    late CollectionReference<Map<String, dynamic>> bTableCollection =
+        FirebaseFirestore.instance.collection(bTable);
+//!!!
+    FirebaseFirestore.instance
+        .collectionGroup(BaseTable.userFollowing)
+        .snapshots()
+        .listen((e) async {
+      logError('change snap');
+      List<Map<String, dynamic>> data = [];
+      QuerySnapshot listMain = await ref.get();
+      for (var eMain in listMain.toListMap()) {
+        String idMainTable = Methods.getString(eMain, FieldName.id);
+        late QuerySnapshot bSnapshot;
+        if (bChildTable != null) {
+          bSnapshot = await bTableCollection
+              .doc(idMainTable)
+              .collection(bChildTable)
+              .get();
+        } else {
+          bSnapshot = await bTableCollection.get();
+        }
+        bChildTable == null
+            ? eMain[bTable] = bSnapshot.toListMap()
+            : eMain[bChildTable] = bSnapshot.toListMap();
+        //Add to data
+        data.add(eMain);
+      }
+      controller.add(data);
+    });
+    return controller.stream;
   }
 }

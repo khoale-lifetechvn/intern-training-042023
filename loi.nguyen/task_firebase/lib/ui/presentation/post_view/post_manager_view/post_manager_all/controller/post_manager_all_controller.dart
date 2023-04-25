@@ -15,10 +15,10 @@ class PostManagerAllController extends BaseController {
   }
 
   @override
-  Future<QuerySnapshot<Object?>?>? loadData() {
+  Stream<QuerySnapshot<Object?>?>? loadDataStream() {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
     final Query<Map<String, dynamic>> userPostsRef =
         firestore.collectionGroup(BaseTable.userPosts);
-    return userPostsRef.get();
+    return userPostsRef.snapshots();
   }
 }

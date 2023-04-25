@@ -23,7 +23,7 @@ class ListPostsUser extends BaseView<ListPostUserController> {
   Widget cardItem(PostModel model) {
     return ListTile(
       onTap: () {
-        locator<GetNavigation>().to(RouterPath.postDetail, arguments: model.id);
+        locator<GetNavigation>().to(RouterPath.postDetail, arguments: model);
       },
       title: Text(model.title, style: getTitleText()),
       subtitle: Text(model.content,
