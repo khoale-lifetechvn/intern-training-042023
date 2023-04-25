@@ -4,6 +4,8 @@ import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/user_following_model.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/core/extension/extension.dart';
+import 'package:task_firebase/core/service/singleton.dart';
+import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 import 'package:task_firebase/ui/presentation/find_users_view/components/find_users_list.dart';
 
@@ -15,15 +17,11 @@ class FindUsersView extends StatefulWidget {
 
 class _FindUsersViewState extends State<FindUsersView> {
   late Future<QuerySnapshot<Object?>?> _usersFuture;
-  late Stream<QuerySnapshot<Object?>?> _followingStream;
 
   @override
   void initState() {
     super.initState();
     _usersFuture = FirebaseFirestore.instance.collection(BaseTable.users).get();
-    _followingStream = FirebaseFirestore.instance
-        .collectionGroup(BaseTable.userFollowing)
-        .snapshots();
   }
 
   @override
@@ -40,25 +38,8 @@ class _FindUsersViewState extends State<FindUsersView> {
           }
           List<UserModel> listUser =
               usersSnapshot.data!.toListMap().map((e) => UserModel(e)).toList();
-          return StreamBuilder<QuerySnapshot<Object?>?>(
-              stream: _followingStream,
-              builder: (_, followingSnapshot) {
-                List<UserModel> list = mergeListUserFollowing(
-                    listUser: listUser.toList(),
-                    listUserFollowing: followingSnapshot.data
-                        .toListMapCustom()
-                        .map((e) => UserFollowingModel(e))
-                        .toList());
-
-                if (followingSnapshot.connectionState ==
-                    ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                }
-                return Padding(
-                  padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                  child: FindUserList(list: list),
-                );
-              });
+          locator<Singleton>().listUser = listUser;
+          return FindUserList(list: listUser);
         },
       ),
     );

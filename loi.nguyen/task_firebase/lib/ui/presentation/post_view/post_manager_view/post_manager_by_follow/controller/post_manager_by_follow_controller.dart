@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/extension/extension.dart';
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/post_model.dart';
@@ -41,11 +40,6 @@ class PostManagerByFollowController extends BaseController {
     super.setData(value);
     _allInfoFollow.addAll(
         value.toListMapCustom().map((e) => UserFollowingModel(e)).toList());
-  }
-
-  void test() {
-    logError(listIdUserFollow.toString());
-    logError(listUserFollowing[0].data.toString());
   }
 
   @override

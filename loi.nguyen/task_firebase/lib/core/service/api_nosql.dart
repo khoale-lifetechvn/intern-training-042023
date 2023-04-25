@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:task_firebase/core/extension/enum.dart';
 import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/model/field_name.dart';
 
@@ -80,6 +81,7 @@ class ApiNosql {
       if (await isExists(id)) {
         await ref.doc(id).delete();
         logInfo('Remove documentID thành công ');
+        return Status.remove.name;
       } else {
         Map<String, Object> newData = Map.from({
           FieldName.createdAt: DateTime.now(),
@@ -87,8 +89,8 @@ class ApiNosql {
         });
         await ref.doc(id).set(newData);
         logInfo('Add documentID thành công ');
+        return Status.add.name;
       }
-      return null;
     } catch (e) {
       logError('Thêm data thất bại: $e');
       return 'Đã có lỗi xãy ra';

@@ -15,6 +15,9 @@ class UserModel extends BaseModel {
 
   String get dbo => Methods.getString(data, FieldName.dbo);
 
-  UserFollowingModel get userFollowing =>
-      UserFollowingModel(Methods.getMap(data, BaseTable.userFollowing));
+  List<UserFollowingModel> get userFollowing =>
+      Methods.getList(data, BaseTable.userFollowing).map((e) => UserFollowingModel(e)).toList();
+
+  @override
+  String get img => super.img.isEmpty?'https://upload.wikimedia.org/wikipedia/commons/5/54/Deus_reading.png':super.img;
 }

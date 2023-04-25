@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/core/model/user_model.dart';
+import 'package:task_firebase/core/service/get_navigation.dart';
+import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/ui/base_widget/search_item.dart';
-import 'package:task_firebase/ui/presentation/find_users_view/components/controller/find_user_list_controller.dart';
 import 'package:task_firebase/ui/resources/assets_manager.dart';
 import 'package:task_firebase/ui/resources/color_manager.dart';
+import 'package:task_firebase/ui/resources/routes_manager.dart';
 import 'package:task_firebase/ui/resources/styles_manager.dart';
 
 class FindUserList extends StatefulWidget {
@@ -15,10 +17,8 @@ class FindUserList extends StatefulWidget {
 }
 
 class _FindUserListState extends State<FindUserList> {
-  late List<UserModel> allUser;
+  List<UserModel> allUser = [];
   List<UserModel> currentUsers = [];
-
-  FindUserListController controller = FindUserListController();
 
   @override
   void initState() {
@@ -28,7 +28,7 @@ class _FindUserListState extends State<FindUserList> {
 
   void getData() {
     currentUsers.clear();
-    allUser = widget.list;
+    allUser.addAll(widget.list);
     currentUsers.addAll(widget.list);
   }
 
@@ -52,24 +52,27 @@ class _FindUserListState extends State<FindUserList> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SearchItem(
-            hint: 'Search user',
-            onChanged: (v) {
-              findUsers(v);
-            }),
-        const SizedBox(height: 24),
-        Expanded(
-          child: ListView.separated(
-            itemCount: currentUsers.length,
-            separatorBuilder: (_, __) => const SizedBox(height: 16),
-            itemBuilder: (_, index) => itemUser(
-              model: currentUsers[index],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          SearchItem(
+              hint: 'Search user',
+              onChanged: (v) {
+                findUsers(v);
+              }),
+          const SizedBox(height: 24),
+          Expanded(
+            child: ListView.separated(
+              itemCount: currentUsers.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 16),
+              itemBuilder: (_, index) => itemUser(
+                model: currentUsers[index],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -81,14 +84,8 @@ class _FindUserListState extends State<FindUserList> {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: BorderSide(color: ColorManager.black, width: 0.4)),
-      trailing: model.userFollowing.isFollow
-          ? Icon(
-              Icons.favorite,
-              color: ColorManager.red,
-            )
-          : const Icon(Icons.favorite_border),
       title: Text(
-        model.name.isEmpty ? 'NoName' : model.name,
+        model.showName,
         style: getTitleText(),
       ),
       subtitle: Text(
@@ -96,7 +93,8 @@ class _FindUserListState extends State<FindUserList> {
         style: getLabelText(),
       ),
       onTap: () {
-        controller.updateFollow(model.id);
+        locator<GetNavigation>()
+            .to(RouterPath.detailFollowUserView, arguments: model);
       },
     );
   }

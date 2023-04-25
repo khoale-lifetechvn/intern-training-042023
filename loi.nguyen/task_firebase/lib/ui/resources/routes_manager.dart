@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/core/model/post_model.dart';
+import 'package:task_firebase/core/model/user_model.dart';
+import 'package:task_firebase/ui/presentation/find_users_view/detail_user_follow_view/detail_user_follow_view.dart';
 import 'package:task_firebase/ui/presentation/find_users_view/find_users_view.dart';
 import 'package:task_firebase/ui/presentation/home_view/home_view.dart';
 import 'package:task_firebase/ui/presentation/login_view/login_view.dart';
@@ -21,6 +23,7 @@ class RouterPath {
   static const String userDetail = "/userDetail";
 
   static const String findUsers = "/findUsers";
+  static const String detailFollowUserView = "/detailFollowUserView";
 
   static const String home = "/home";
 }
@@ -42,9 +45,13 @@ class RouteGenerator {
       case RouterPath.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
 
-      //FindUser
+      //FindUser and follow
       case RouterPath.findUsers:
         return MaterialPageRoute(builder: (_) => const FindUsersView());
+      case RouterPath.detailFollowUserView:
+        UserModel user = routeSettings.arguments as UserModel;
+        return MaterialPageRoute(
+            builder: (_) => DetailUserFollowView(user: user));
 
       //Posts
       case RouterPath.postAdd:

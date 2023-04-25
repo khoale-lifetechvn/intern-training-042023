@@ -20,13 +20,12 @@ class Comment extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: AspectRatio(
                 aspectRatio: 0.9,
-                child: Image.network(postCommentModel.user.img,
-                    fit: BoxFit.fitHeight)),
+                child: Image.network(urlImg, fit: BoxFit.fitHeight)),
           ),
           Expanded(flex: 4, child: info())
         ],

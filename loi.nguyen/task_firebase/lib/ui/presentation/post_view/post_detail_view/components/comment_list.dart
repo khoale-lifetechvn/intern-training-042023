@@ -9,11 +9,6 @@ class CommentList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        // separator: Divider(
-        //   color: ColorManager.greyBG,
-        //   height: 8,
-        //   indent: 1,
-        // ),
         children:
             listCommnent.map((e) => Comment(postCommentModel: e)).toList());
   }
