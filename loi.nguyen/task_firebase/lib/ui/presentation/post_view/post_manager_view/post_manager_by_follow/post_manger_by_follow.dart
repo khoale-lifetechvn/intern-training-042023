@@ -39,10 +39,7 @@ class _PostMangerByFollowT extends BaseView<PostManagerByFollowController> {
             if (snapshot.data!.docs.isEmpty) {
               return getEmtpyView();
             }
-            return Expanded(
-              child:
-                  PostManagerList(list: controller.getListPort(snapshot.data)),
-            );
+            return PostManagerList(list: controller.getListPort(snapshot.data));
           }
         });
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/core/extension/enum.dart';
-import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/core/service/api_nosql.dart';
@@ -23,19 +22,28 @@ class FindUserList extends StatefulWidget {
 }
 
 class _FindUserListState extends State<FindUserList> {
-  List<UserModel> allUser = [];
+  late List<UserModel> allUser;
   List<UserModel> currentUsers = [];
 
   @override
   void initState() {
-    getData();
+    allUser = widget.list;
+    currentUsers.addAll(widget.list);
     super.initState();
   }
 
-  void getData() {
-    currentUsers.clear();
-    allUser.addAll(widget.list);
-    currentUsers.addAll(widget.list);
+  @override
+  void didUpdateWidget(covariant FindUserList oldWidget) {
+    update();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void update() {
+    allUser = widget.list;
+    List<UserModel> newListUpdate = allUser
+        .where((e) => currentUsers.any((eCurrent) => eCurrent.id == e.id))
+        .toList();
+    currentUsers = newListUpdate;
   }
 
   void updateFollow(String userID) {
@@ -56,12 +64,6 @@ class _FindUserListState extends State<FindUserList> {
     });
   }
 
-  @override
-  void didUpdateWidget(covariant FindUserList oldWidget) {
-    getData();
-    super.didUpdateWidget(oldWidget);
-  }
-
   void findUsers(String keyword) {
     currentUsers.clear();
     setState(() {
@@ -77,7 +79,7 @@ class _FindUserListState extends State<FindUserList> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           SearchItem(

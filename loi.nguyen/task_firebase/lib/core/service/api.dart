@@ -8,7 +8,6 @@ import 'package:path/path.dart';
 import 'package:task_firebase/core/extension/extension.dart';
 import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/extension/methods.dart';
-import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/field_name.dart';
 
 class Api {
@@ -165,12 +164,10 @@ class Api {
       {required String bTable, String? bChildTable}) {
     late CollectionReference<Map<String, dynamic>> bTableCollection =
         FirebaseFirestore.instance.collection(bTable);
-//!!!
     FirebaseFirestore.instance
-        .collectionGroup(BaseTable.userFollowing)
+        .collectionGroup(bChildTable ?? bTable)
         .snapshots()
         .listen((e) async {
-      logError('change snap');
       List<Map<String, dynamic>> data = [];
       QuerySnapshot listMain = await ref.get();
       for (var eMain in listMain.toListMap()) {

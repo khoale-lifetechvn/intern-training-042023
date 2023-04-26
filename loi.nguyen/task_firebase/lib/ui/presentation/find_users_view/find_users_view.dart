@@ -32,8 +32,9 @@ class _FindUsersViewState extends State<FindUsersView> {
             }
             List<UserModel> listUser =
                 snapshot.data!.map((e) => UserModel(e)).toList();
-            logError('build stre');
-            return FindUserList(list: listUser);
+            return FindUserList(
+              list: listUser,
+            );
           }
         },
       ),
