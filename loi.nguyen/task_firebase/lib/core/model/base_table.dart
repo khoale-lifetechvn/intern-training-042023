@@ -10,6 +10,7 @@ class BaseTable {
   static const String blocking = 'blocking';
   static const String userBlocking = 'userBlocking';
   static const String reaction = 'reaction';
+  static const String emoji = 'emoji';
   static const String emojiPost = 'emojiPost';
   static const String emojiComment = 'emojiComment';
 }

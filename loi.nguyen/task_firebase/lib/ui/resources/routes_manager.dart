@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:task_firebase/core/model/emoji_model.dart';
 import 'package:task_firebase/core/model/post_model.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/ui/presentation/block_user_view/block_user_view.dart';
 import 'package:task_firebase/ui/presentation/detail_author_view/detail_author_view.dart';
+import 'package:task_firebase/ui/presentation/emoji_view/emoji_detail_view/emoji_detail_view.dart';
+import 'package:task_firebase/ui/presentation/emoji_view/emoji_view.dart';
 import 'package:task_firebase/ui/presentation/follow_users_view/follow_users_view.dart';
 import 'package:task_firebase/ui/presentation/home_view/home_view.dart';
 import 'package:task_firebase/ui/presentation/login_view/login_view.dart';
@@ -29,6 +32,9 @@ class RouterPath {
   static const String blockUsers = "/blockUsers";
 
   static const String home = "/home";
+
+  static const String emoji = "/emoji";
+  static const String detailEmoji = "/detailEmoji";
 }
 
 class RouteGenerator {
@@ -58,6 +64,13 @@ class RouteGenerator {
       //Blocks
       case RouterPath.blockUsers:
         return MaterialPageRoute(builder: (_) => BlockUserView());
+
+      //Emoji
+      case RouterPath.emoji:
+        return MaterialPageRoute(builder: (_) => EmojiView());
+      case RouterPath.detailEmoji:
+        EmojiModel emoji = routeSettings.arguments as EmojiModel;
+        return MaterialPageRoute(builder: (_) => EmojiDetailView(model: emoji));
 
       //Posts
       case RouterPath.postAdd:

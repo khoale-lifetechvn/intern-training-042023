@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/core/service/get_navigation.dart';
+import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
+import 'package:task_firebase/ui/base_widget/base_skeleton.dart';
 
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 import 'package:task_firebase/ui/resources/color_manager.dart';
@@ -46,6 +48,12 @@ class HomeView extends StatelessWidget {
             icon: Icons.block,
             onPressed: () {
               locator<GetNavigation>().to(RouterPath.blockUsers);
+            }),
+        _ItemCard(
+            title: 'Emoji',
+            icon: Icons.emoji_emotions,
+            onPressed: () {
+              locator<GetNavigation>().to(RouterPath.emoji);
             })
       ];
 
@@ -53,7 +61,8 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: LFAppBar(title: 'Home'),
-      body: GridView.builder(
+      body: afterBuilding(
+          child: GridView.builder(
         itemCount: _list.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -64,7 +73,21 @@ class HomeView extends StatelessWidget {
         itemBuilder: (_, index) => _item(
           item: _list[index],
         ),
-      ),
+      )),
+    );
+  }
+
+  Widget afterBuilding({required Widget child}) {
+    return FutureBuilder(
+      future: locator<Singleton>().loadDefaultData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const BaseSkeleton(content: 'Đang tải dữ liệu....');
+        } else if (snapshot.hasError) {
+          return const BaseSkeleton(content: 'Có lỗi xãy ra');
+        }
+        return child;
+      },
     );
   }
 
