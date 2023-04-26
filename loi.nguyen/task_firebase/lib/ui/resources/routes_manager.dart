@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/core/model/post_model.dart';
 import 'package:task_firebase/core/model/user_model.dart';
-import 'package:task_firebase/ui/presentation/find_users_view/detail_user_follow_view/detail_user_follow_view.dart';
-import 'package:task_firebase/ui/presentation/find_users_view/find_users_view.dart';
+import 'package:task_firebase/ui/presentation/block_user_view/block_user_view.dart';
+import 'package:task_firebase/ui/presentation/detail_author_view/detail_author_view.dart';
+import 'package:task_firebase/ui/presentation/follow_users_view/follow_users_view.dart';
 import 'package:task_firebase/ui/presentation/home_view/home_view.dart';
 import 'package:task_firebase/ui/presentation/login_view/login_view.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_add_view/post_add_view.dart';
@@ -22,8 +23,10 @@ class RouterPath {
   static const String user = "/user";
   static const String userDetail = "/userDetail";
 
-  static const String findUsers = "/findUsers";
-  static const String detailFollowUserView = "/detailFollowUserView";
+  static const String followUsers = "/followUsers";
+  static const String detailAuthor = "/detailAuthor";
+
+  static const String blockUsers = "/blockUsers";
 
   static const String home = "/home";
 }
@@ -46,12 +49,15 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomeView());
 
       //FindUser and follow
-      case RouterPath.findUsers:
-        return MaterialPageRoute(builder: (_) => const FindUsersView());
-      case RouterPath.detailFollowUserView:
+      case RouterPath.followUsers:
+        return MaterialPageRoute(builder: (_) => FollowUsersView());
+      case RouterPath.detailAuthor:
         UserModel user = routeSettings.arguments as UserModel;
-        return MaterialPageRoute(
-            builder: (_) => DetailUserFollowView(user: user));
+        return MaterialPageRoute(builder: (_) => DetailAuthorView(user: user));
+
+      //Blocks
+      case RouterPath.blockUsers:
+        return MaterialPageRoute(builder: (_) => BlockUserView());
 
       //Posts
       case RouterPath.postAdd:

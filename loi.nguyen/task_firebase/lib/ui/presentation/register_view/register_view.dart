@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/ui/base_widget/form_data.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
+import 'package:task_firebase/ui/base_widget/lf_form_picker_date.dart';
 import 'package:task_firebase/ui/base_widget/lf_text_field.dart';
 import 'package:task_firebase/ui/base_widget/title_logo_item.dart';
 import 'package:task_firebase/ui/presentation/register_view/controller/register_controller.dart';
@@ -71,8 +72,7 @@ class _RegisterViewState extends State<RegisterView> {
           label: 'UserName',
           onSaved: (p0) => controller.name = p0,
         ),
-        LFTextFormField(
-          label: 'Dbo',
+        LFFormPickerDate(
           onSaved: (p0) => controller.dbo = p0,
         )
       ];

@@ -12,7 +12,7 @@ class UserDetailController {
   final Api _api = Api(BaseTable.users);
 
   String? _name;
-  String? _dbo;
+  DateTime? _dbo;
   File? _file;
 
   UserModel get user => locator<Singleton>().userModel;
@@ -21,7 +21,7 @@ class UserDetailController {
     _name = value;
   }
 
-  set dbo(String? value) {
+  set dbo(DateTime? value) {
     _dbo = value;
   }
 

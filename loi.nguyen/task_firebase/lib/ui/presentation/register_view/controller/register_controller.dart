@@ -8,20 +8,20 @@ class RegisterController {
   String? _email;
   String? _password;
   String? _name;
-  String? _dbo;
+  DateTime? _dbo;
 
   set email(String? value) => _email = value;
 
   set password(String? value) => _password = value;
   set name(String? value) => _name = value;
-  set dbo(String? value) => _dbo = value;
+  set dbo(DateTime? value) => _dbo = value;
 
   final AuthenticationService auth = AuthenticationService();
 
   void signUp() async {
     await auth
         .signUp(
-            dbo: _dbo ?? '',
+            dbo: _dbo ??DateTime.now(),
             email: _email ?? '',
             name: _name ?? '',
             password: _password ?? '')

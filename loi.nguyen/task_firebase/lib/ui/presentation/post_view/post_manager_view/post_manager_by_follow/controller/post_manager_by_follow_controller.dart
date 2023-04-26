@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:task_firebase/core/extension/extension.dart';
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/post_model.dart';
-import 'package:task_firebase/core/model/user_following_model.dart';
+import 'package:task_firebase/core/model/sub_model.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/ui/base/base_controller.dart';
@@ -16,9 +16,9 @@ class PostManagerByFollowController extends BaseController {
 
   String get myID => locator<Singleton>().userModel.id;
 
-  final List<UserFollowingModel> _allInfoFollow = [];
+  final List<SubModel> _allInfoFollow = [];
 
-  List<UserFollowingModel> get listUserFollowing =>
+  List<SubModel> get listUserFollowing =>
       _allInfoFollow.where((e) => e.id == myID).toList();
 
   List<String> get listIdUserFollow =>
@@ -39,7 +39,7 @@ class PostManagerByFollowController extends BaseController {
   void setData(QuerySnapshot<Object?>? value) {
     super.setData(value);
     _allInfoFollow.addAll(
-        value.toListMapCustom().map((e) => UserFollowingModel(e)).toList());
+        value.toListMapCustom().map((e) => SubModel(e)).toList());
   }
 
   @override

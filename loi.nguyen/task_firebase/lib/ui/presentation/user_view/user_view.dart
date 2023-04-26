@@ -38,7 +38,7 @@ class _UserViewState extends State<UserView> {
     user = locator<Singleton>().userModel;
     _userName = getText(user.name);
     _email = getText(user.email);
-    _dbo = getText(user.dbo);
+    _dbo = getText(user.showDbo);
     _createdAt = getText(user.createdAt);
     _updatedAt = getText(user.updatedAt);
     _img = user.img.isEmpty

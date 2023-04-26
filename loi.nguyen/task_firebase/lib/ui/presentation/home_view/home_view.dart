@@ -24,10 +24,10 @@ class HomeView extends StatelessWidget {
 
   List<_ItemCard> get _list => [
         _ItemCard(
-            title: 'Find users',
+            title: 'Following',
             icon: Icons.search,
             onPressed: () {
-              locator<GetNavigation>().to(RouterPath.findUsers);
+              locator<GetNavigation>().to(RouterPath.followUsers);
             }),
         _ItemCard(
             title: 'View posts',
@@ -40,6 +40,12 @@ class HomeView extends StatelessWidget {
             icon: Icons.medical_information_rounded,
             onPressed: () {
               locator<GetNavigation>().to(RouterPath.user);
+            }),
+        _ItemCard(
+            title: 'Block users',
+            icon: Icons.block,
+            onPressed: () {
+              locator<GetNavigation>().to(RouterPath.blockUsers);
             })
       ];
 

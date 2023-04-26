@@ -7,4 +7,9 @@ class BaseTable {
   static const String userFollowing = 'userFollowing';
   static const String comments = 'comments';
   static const String postComments = 'postComments';
+  static const String blocking = 'blocking';
+  static const String userBlocking = 'userBlocking';
+  static const String reaction = 'reaction';
+  static const String emojiPost = 'emojiPost';
+  static const String emojiComment = 'emojiComment';
 }

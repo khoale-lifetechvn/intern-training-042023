@@ -24,7 +24,7 @@ abstract class BaseAuth {
       {required String email,
       required String password,
       required String name,
-      required String dbo});
+      DateTime? dbo});
 
   User? getCurrentUser();
 
@@ -129,15 +129,18 @@ class AuthenticationService implements BaseAuth {
       {required String name,
       required String uid,
       required String email,
-      required String dbo}) {
+      DateTime? dbo}) {
     Api api = Api(BaseTable.users);
-    return api.ref.doc(uid).set({
+    Map<String, dynamic> data = {
       FieldName.email: email,
       FieldName.name: name,
-      FieldName.dbo: dbo,
       FieldName.createdAt: DateTime.now(),
       FieldName.updatedAt: DateTime.now(),
-    });
+    };
+    if (dbo != null) {
+      data[FieldName.dbo] = dbo;
+    }
+    return api.ref.doc(uid).set(data);
   }
 
   //Apply for social media: facebook, google
@@ -151,10 +154,10 @@ class AuthenticationService implements BaseAuth {
     } else {
       logSuccess('Đã lưu data trên firebase trên social media');
       await _addUserToDatabaseBySignIn(
-          name: user.displayName ?? '',
-          uid: user.uid,
-          email: user.email ?? '',
-          dbo: '');
+        name: user.displayName ?? '',
+        uid: user.uid,
+        email: user.email ?? '',
+      );
       return locator<Singleton>().reloadGlobalUser();
     }
   }
@@ -164,16 +167,18 @@ class AuthenticationService implements BaseAuth {
       {required String email,
       required String password,
       required String name,
-      required String dbo}) async {
+      DateTime? dbo}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       logSuccess('Thêm vào authenication thành công');
+
       await _addUserToDatabaseBySignIn(
           uid: AuthenticationService().getCurrentUser()!.uid,
           name: name,
           email: email,
           dbo: dbo);
+      locator<Singleton>().reloadGlobalUser();
       logSuccess('Thêm vào firestorage thành công');
       return null;
     } on FirebaseAuthException catch (e) {

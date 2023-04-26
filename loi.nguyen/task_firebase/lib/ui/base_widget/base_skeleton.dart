@@ -13,6 +13,7 @@ class BaseSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircularProgressIndicator(
             backgroundColor: colorData,
