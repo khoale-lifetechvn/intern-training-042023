@@ -7,6 +7,7 @@ import 'package:task_firebase/ui/base_widget/base_skeleton.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/comment_list.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/post_detail_edit.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/post_item_emoji/post_item_emoji.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/text_field_comment.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/controller/post_detail_controller.dart';
 import 'package:task_firebase/ui/resources/color_manager.dart';
@@ -54,24 +55,32 @@ class PostDetailView extends StatelessWidget {
     String title = '${model.title}( ${controller.userPost.name} )';
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: getTitleText(),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: getTitleText(),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Updated At: ${model.updatedAt}',
+                  style: getLabelText(),
+                ),
+                //Desc
+                const SizedBox(height: 16),
+                Text(
+                  model.content,
+                  style: getLabelText(color: ColorManager.greyForm),
+                )
+              ],
+            ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            'Updated At: ${model.updatedAt}',
-            style: getLabelText(),
-          ),
-          //Desc
-          const SizedBox(height: 16),
-          Text(
-            model.content,
-            style: getLabelText(color: ColorManager.greyForm),
-          )
+          PostItemEmoji(postID: model.id)
         ],
       ),
     );

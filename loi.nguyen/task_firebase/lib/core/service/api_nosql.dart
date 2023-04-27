@@ -47,6 +47,10 @@ class ApiNosql {
     return ref.snapshots();
   }
 
+   Future<QuerySnapshot> getDataCollection() {
+    return ref.get();
+  }
+
   Future<String?> removeData(String id) async {
     try {
       await ref.doc(id).delete();
@@ -75,7 +79,7 @@ class ApiNosql {
     }
   }
 
-  ///Add or remove if document show
+  ///Add or remove if document show => return Status.remove.name and Status.add.name
   Future<String?> addDocumentNN({required String id}) async {
     try {
       if (await isExists(id)) {
@@ -91,6 +95,32 @@ class ApiNosql {
         logInfo('Add documentID thành công ');
         return Status.add.name;
       }
+    } catch (e) {
+      logError('Thêm data thất bại: $e');
+      return 'Đã có lỗi xãy ra';
+    }
+  }
+
+  ///Add, update or remove
+  Future<String?> handleDocument(
+      {required String id,
+      required Map<String, Object> data,
+      bool isRemove = false}) async {
+    try {
+      if (isRemove) {
+        await ref.doc(id).delete();
+        logInfo('Remove documentID thành công ');
+      } else {
+        Map<String, Object> newData = Map.from({
+          ...data,
+          ...{FieldName.createdAt: DateTime.now()},
+          ...{FieldName.updatedAt: DateTime.now()}
+        });
+
+        await ref.doc(id).set(newData, SetOptions(merge: true));
+        logInfo('Cập nhật documentID thành công ');
+      }
+      return null;
     } catch (e) {
       logError('Thêm data thất bại: $e');
       return 'Đã có lỗi xãy ra';

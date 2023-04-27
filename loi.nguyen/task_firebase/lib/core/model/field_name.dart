@@ -12,6 +12,7 @@ class FieldName {
   static const String userRef = 'userRef';
   static const String refID = 'refID';
   static const String index = 'index';
+  static const String emojiRef = 'emojiRef';
   
 
 }

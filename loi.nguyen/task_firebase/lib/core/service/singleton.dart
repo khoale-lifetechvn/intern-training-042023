@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:task_firebase/core/extension/log.dart';
+import 'package:task_firebase/core/extension/methods.dart';
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/model/emoji_model.dart';
+import 'package:task_firebase/core/model/field_name.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/core/service/api.dart';
+import 'package:task_firebase/core/service/api_nosql.dart';
 import 'package:task_firebase/core/service/auth_service.dart';
 import 'package:task_firebase/core/extension/extension.dart';
 import 'package:task_firebase/locator.dart';
@@ -15,11 +18,13 @@ class Singleton {
   final List<UserModel> _listUser = [];
 
   final List<EmojiModel> _listEmoji = [];
+  final List<String> _listIdUsersBlockDidAccount = [];
 
   UserModel get userModel => _userModel;
 
   List<UserModel> get listUser => _listUser;
   List<EmojiModel> get listEmoji => _listEmoji;
+  List<String> get listIdUsersBlockDidAccount => _listIdUsersBlockDidAccount;
 
   Future<QuerySnapshot> loadListUser() {
     Api api = Api(BaseTable.users);
@@ -60,6 +65,20 @@ class Singleton {
     return api.getDataCollection().then((value) {
       _listUser.clear();
       _listUser.addAll(value.toListMap().map((e) => UserModel(e)).toList());
+    });
+  }
+
+  Future<void> loadUsersBlockDidAccount() {
+    ApiNosql apiUserBlock = ApiNosql(
+        parentTable: BaseTable.blocking,
+        parentID: _userModel.id,
+        childTable: BaseTable.userBlocking);
+    return apiUserBlock.getDataCollection().then((value) {
+      _listIdUsersBlockDidAccount.clear();
+      _listIdUsersBlockDidAccount.addAll(value
+          .toListMap()
+          .map((e) => Methods.getString(e, FieldName.id))
+          .toList());
     });
   }
 }

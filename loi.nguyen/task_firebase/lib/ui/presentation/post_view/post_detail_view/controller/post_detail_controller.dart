@@ -113,4 +113,5 @@ class PostDetailController {
   List<PostCommentModel> get listComment {
     return _dataComment.map((e) => PostCommentModel(e)).toList();
   }
+
 }

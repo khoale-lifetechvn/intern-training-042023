@@ -3,6 +3,7 @@ import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/service/auth_service.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
+import 'package:task_firebase/ui/base_widget/layout_reaction.dart';
 import 'package:task_firebase/ui/base_widget/lf_dialog.dart';
 import 'package:task_firebase/ui/resources/routes_manager.dart';
 
@@ -57,5 +58,25 @@ class GetNavigation {
         );
       },
     );
+  }
+
+  void openReaction(
+      {required Function(String emojiID) onChangeSubmit,
+      String? emojiId}) async {
+    String? result = await showModalBottomSheet(
+        context: navigatorKey.currentContext!,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        )),
+        builder: (_) {
+          return LayoutReaction(
+            emojiId: emojiId,
+          );
+        });
+    if (result != null) {
+      onChangeSubmit(result);
+    }
   }
 }

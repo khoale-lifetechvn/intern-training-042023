@@ -22,6 +22,7 @@ class Api {
     return ref.get();
   }
 
+
   Stream<QuerySnapshot> streamDataCollection() {
     return ref.snapshots();
   }
@@ -191,4 +192,6 @@ class Api {
     });
     return controller.stream;
   }
+
+
 }

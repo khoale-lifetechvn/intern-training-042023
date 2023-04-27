@@ -10,13 +10,13 @@ import 'package:task_firebase/ui/base/base_controller.dart';
 import 'package:task_firebase/ui/base_widget/lf_dialog.dart';
 
 class DetailAuthorController extends BaseController {
-  DetailAuthorController(this.userID) {
+  DetailAuthorController(this.userIDAuthor) {
     _apiNosql = ApiNosql(
         parentTable: BaseTable.following,
-        parentID: userID,
+        parentID: userIDAuthor,
         childTable: BaseTable.userFollowing);
   }
-  final String userID;
+  final String userIDAuthor;
 
   late ApiNosql _apiNosql;
 
