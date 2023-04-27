@@ -10,7 +10,6 @@ import 'package:task_firebase/core/service/api.dart';
 import 'package:task_firebase/core/service/api_nosql.dart';
 import 'package:task_firebase/core/service/auth_service.dart';
 import 'package:task_firebase/core/extension/extension.dart';
-import 'package:task_firebase/locator.dart';
 
 class Singleton {
   UserModel _userModel = UserModel({});
