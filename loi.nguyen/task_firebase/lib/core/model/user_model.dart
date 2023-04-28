@@ -26,6 +26,7 @@ class UserModel extends BaseModel {
           .map((e) => SubModel(e))
           .toList();
 
+  ///List user did block by this account
   List<SubModel> get listUserBlock =>
       Methods.getList(data, BaseTable.userBlocking)
           .map((e) => SubModel(e))
@@ -35,9 +36,18 @@ class UserModel extends BaseModel {
       ? 'https://upload.wikimedia.org/wikipedia/commons/5/54/Deus_reading.png'
       : super.img;
 
-  bool get isFollow {
+  bool get isFollowThisAccount {
     for (var e in listUserFollow) {
       if (e.id == locator<Singleton>().userModel.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool get isBlockThisAccount {
+    for (var e in locator<Singleton>().listIdUsersBlockDidAccount) {
+      if (id == e) {
         return true;
       }
     }

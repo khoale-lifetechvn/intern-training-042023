@@ -36,7 +36,7 @@ class FollowUsersView extends StatelessWidget {
                   onPressed: () {
                     controller.updateFollow(user.id);
                   },
-                  icon: user.isFollow
+                  icon: user.isFollowThisAccount
                       ? Icon(
                           Icons.favorite,
                           color: ColorManager.red,

@@ -5,6 +5,7 @@ import 'package:task_firebase/core/model/post_model.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/ui/base_widget/base_skeleton.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
+import 'package:task_firebase/ui/presentation/block_user_view/default_block_view.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/comment_list.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/post_detail_edit.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/post_item_emoji/post_item_emoji.dart';
@@ -29,26 +30,28 @@ class PostDetailView extends StatelessWidget {
   }
 
   Widget someonePost(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        appBar: LFAppBar(title: 'Detail Post'),
-        body: ListView(
-          children: [
-            image(context),
-            Divider(color: ColorManager.greyBG, thickness: 0.3),
-            content(),
-            Divider(color: ColorManager.greyBG, thickness: 0.3),
-            comment(),
-          ],
-        ),
-        bottomSheet: TextFieldComment(onSubmit: (text) {
-          controller.postCommnet(text);
-        }),
-      ),
-    );
+    return model.isBlockThisAccount
+        ? const DefaultBlockView()
+        : GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: Scaffold(
+              appBar: LFAppBar(title: 'Detail Post'),
+              body: ListView(
+                children: [
+                  image(context),
+                  Divider(color: ColorManager.greyBG, thickness: 0.3),
+                  content(),
+                  Divider(color: ColorManager.greyBG, thickness: 0.3),
+                  comment(),
+                ],
+              ),
+              bottomSheet: TextFieldComment(onSubmit: (text) {
+                controller.postCommnet(text);
+              }),
+            ),
+          );
   }
 
   Widget content() {

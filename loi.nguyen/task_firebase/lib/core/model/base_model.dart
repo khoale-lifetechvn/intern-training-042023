@@ -1,5 +1,7 @@
 import 'package:task_firebase/core/extension/methods.dart';
 import 'package:task_firebase/core/model/field_name.dart';
+import 'package:task_firebase/core/service/singleton.dart';
+import 'package:task_firebase/locator.dart';
 
 class BaseModel {
   BaseModel(this.data);
@@ -13,4 +15,6 @@ class BaseModel {
           defaultFormat: 'dd/MM/yyyy');
 
   String get img => Methods.getString(data, FieldName.img);
+
+  String get userID => locator<Singleton>().userModel.id;
 }

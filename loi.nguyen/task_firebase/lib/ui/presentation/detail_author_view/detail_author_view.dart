@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/ui/base/base_view.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
+import 'package:task_firebase/ui/presentation/block_user_view/default_block_view.dart';
 import 'package:task_firebase/ui/presentation/detail_author_view/controller/detail_author_controller.dart';
 
 import 'package:task_firebase/ui/presentation/detail_author_view/list_posts_user/list_posts_user.dart';
@@ -10,81 +11,83 @@ import 'package:task_firebase/ui/resources/styles_manager.dart';
 
 class DetailAuthorView extends BaseView<DetailAuthorController> {
   DetailAuthorView({super.key, required this.user})
-      : super(DetailAuthorController(user.id));
+      : super(DetailAuthorController(user.id), isScreen: false);
   final UserModel user;
-
-  @override
-  AppBar? appBar(BuildContext context) {
-    return LFAppBar(title: 'Detail Author');
-  }
 
   @override
   Widget getEmtpyView() {
     controller.clearData();
-    return infoAuthor();
+    return view();
   }
 
   @override
   Widget getMainView(BuildContext context, DetailAuthorController controller) {
-    return infoAuthor();
+    return view();
+  }
+
+  Widget view() {
+    return user.isBlockThisAccount ? const DefaultBlockView() : infoAuthor();
   }
 
   Widget infoAuthor() {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: Image.network(
-              user.showImg,
-              height: 250,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  user.showName,
-                  style: getTitleText(fontWeight: FontWeight.bold),
-                ),
+    return Scaffold(
+      appBar: LFAppBar(title: 'Detail Author'),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: Image.network(
+                user.showImg,
+                height: 250,
               ),
-              const SizedBox(height: 8),
-              IconButton(
-                onPressed: () {
-                  controller.updateFollow();
-                },
-                icon: controller.isFollow
-                    ? Icon(
-                        Icons.favorite,
-                        color: ColorManager.red,
-                      )
-                    : const Icon(Icons.favorite_border),
-              )
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            user.email,
-            style: getLabelText(color: ColorManager.greyBG),
-          ),
-          Divider(
-            color: ColorManager.greyTF,
-            height: 16,
-          ),
-          infoFollow(),
-          Divider(
-            color: ColorManager.greyTF,
-            height: 16,
-          ),
-          Expanded(
-            child: ListPostsUser(
-              userID: user.id,
             ),
-          )
-        ],
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    user.showName,
+                    style: getTitleText(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                IconButton(
+                  onPressed: () {
+                    controller.updateFollow();
+                  },
+                  icon: controller.isFollow
+                      ? Icon(
+                          Icons.favorite,
+                          color: ColorManager.red,
+                        )
+                      : const Icon(Icons.favorite_border),
+                )
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              user.email,
+              style: getLabelText(color: ColorManager.greyBG),
+            ),
+            Divider(
+              color: ColorManager.greyTF,
+              height: 16,
+            ),
+            infoFollow(),
+            Divider(
+              color: ColorManager.greyTF,
+              height: 16,
+            ),
+            Expanded(
+              child: ListPostsUser(
+                userID: user.id,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

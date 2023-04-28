@@ -49,6 +49,8 @@ class Singleton {
     logSuccess('Tải dữ liệu emoji thành công');
     await loadUser();
     logSuccess('Tải dữ liệu người dùng thành công');
+    await loadUsersBlockDidAccount();
+    logSuccess('Tải dữ liệu những người block tài khoản này thành công');
   }
 
   Future<void> loadEmoji() {
