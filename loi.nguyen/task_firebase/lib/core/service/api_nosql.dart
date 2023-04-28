@@ -31,10 +31,15 @@ class ApiNosql {
       Map<String, Object> newData = Map.from({
         ...data,
         ...{FieldName.createdAt: DateTime.now()},
-        ...{FieldName.updatedAt: DateTime.now()}
+        ...{FieldName.updatedAt: DateTime.now()},
       });
-      //Read data by id and get Collection
-      await ref.add(newData);
+      //Add random id
+      var newDocRef = await ref.add(newData);
+
+      var newDocID = newDocRef.id;
+      var dataWithID = {FieldName.selfId: newDocID};
+      await ref.doc(newDocID).set(dataWithID);
+
       logSuccess('Thêm data thành công vào bảng $parentTable > $childTable');
       return null;
     } catch (e) {
@@ -47,7 +52,7 @@ class ApiNosql {
     return ref.snapshots();
   }
 
-   Future<QuerySnapshot> getDataCollection() {
+  Future<QuerySnapshot> getDataCollection() {
     return ref.get();
   }
 
@@ -89,7 +94,8 @@ class ApiNosql {
       } else {
         Map<String, Object> newData = Map.from({
           FieldName.createdAt: DateTime.now(),
-          FieldName.updatedAt: DateTime.now()
+          FieldName.updatedAt: DateTime.now(),
+          FieldName.selfId: id
         });
         await ref.doc(id).set(newData);
         logInfo('Add documentID thành công ');
@@ -114,7 +120,8 @@ class ApiNosql {
         Map<String, Object> newData = Map.from({
           ...data,
           ...{FieldName.createdAt: DateTime.now()},
-          ...{FieldName.updatedAt: DateTime.now()}
+          ...{FieldName.updatedAt: DateTime.now()},
+          ...{FieldName.selfId: id},
         });
 
         await ref.doc(id).set(newData, SetOptions(merge: true));

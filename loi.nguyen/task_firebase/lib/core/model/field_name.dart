@@ -13,6 +13,7 @@ class FieldName {
   static const String refID = 'refID';
   static const String index = 'index';
   static const String emojiRef = 'emojiRef';
+  static const String selfId = 'selfId';
   
 
 }

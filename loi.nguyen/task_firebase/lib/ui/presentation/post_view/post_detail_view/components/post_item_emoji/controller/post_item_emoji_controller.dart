@@ -64,14 +64,9 @@ class PostItemEmojiController extends BaseController {
 
   @override
   Stream<QuerySnapshot<Object?>?>? loadDataStream() {
-    // return _apiEmojiPost.ref
-    //     .where(FieldPath.documentId, isEqualTo: postID)
-    //     .orderBy('createdAt', descending: true)
-    //     .snapshots();
-    return FirebaseFirestore.instance
-        .collectionGroup(BaseTable.emojiPost)
-        .where(FieldPath.documentId, isEqualTo: userID)
-        .orderBy(FieldPath.documentId)
+    return _apiEmojiPost.ref
+        .where(FieldName.selfId, isEqualTo: postID)
+        .orderBy(FieldName.createdAt, descending: true)
         .snapshots();
   }
 }

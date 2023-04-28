@@ -28,50 +28,38 @@ class PostItemEmoji extends BaseView<PostItemEmojiController> {
 
   @override
   Widget getMainView(BuildContext context, PostItemEmojiController controller) {
+    return itemEmoji();
+  }
+
+  Widget itemEmoji() {
     List<ReactionModel> listEmojiPost = controller.listEmojiPost;
-    return controller.currentEmoji == null
-        ? notReaction()
-        : InkWell(
-            onTap: onTapReaction,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.network(
+    return InkWell(
+      onTap: onTapReaction,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          controller.currentEmoji == null
+              ? Text(
+                  'Reaction',
+                  style: getLabelText(color: ColorManager.blue),
+                )
+              : Image.network(
                   controller.currentEmoji!.img,
                   width: 30,
                   height: 30,
                 ),
-                itemLabel(listEmojiPost.length.toString())
-              ],
-            ),
-          );
-  }
-
-  Widget notReaction() {
-    return TextButton(
-      onPressed: onTapReaction,
-      child: Text(
-        'Reaction',
-        style: getLabelText(color: ColorManager.blue),
+          const SizedBox(height: 8),
+          Text(
+            listEmojiPost.length.toString(),
+            style: getLabelText(),
+          )
+        ],
       ),
     );
   }
 
   @override
   Widget getEmtpyView() {
-    return notReaction();
-  }
-
-  Widget itemLabel(String title) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        const SizedBox(height: 8),
-        Text(
-          title,
-          style: getLabelText(),
-        ),
-      ],
-    );
+    return itemEmoji();
   }
 }
