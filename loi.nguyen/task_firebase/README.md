@@ -1,4 +1,139 @@
 ## How to setup and config?
+- With the child table, you must create `seftId` for each to query faster. By using **collectionGroup** you read more at [stackOverfollow](https://stackoverflow.com/questions/68433976/firestore-collection-group-query-on-document-id)
+- Structure database
+```
+ --- users (collection)
+   |     |
+   |     --- uid (documents)
+   |          |
+   |          --- name: "User Name"
+   |          |
+   |          --- email: "email@email.com"
+   |          |
+   |          --- dob: "19900515"
+   |          |
+   |          --- createdAt: March 24, 2022 at 9:00:00 PM UTC+7
+   |          |
+   |          --- updatedAt: March 24, 2022 at 10:15:00 PM UTC+7
+   |
+	--- emoji (collection)
+   |     |
+   |     --- emojiId (documents)
+   |          |
+   |          --- image: "abc.png"
+   |          |
+   |          --- number: 1
+   |          |
+   |          --- title: "Like" 
+   |          |
+   |          --- createdAt: March 24, 2022 at 9:00:00 PM UTC+7
+   |          |
+   |          --- updatedAt: March 24, 2022 at 10:15:00 PM UTC+7
+   |
+   
+   --- reaction (collection)
+   |     |
+   |     --- uid (documents)
+   |           |
+   |           --- emojiPost (collection)
+   |                 |
+   |                 ---postId (documents)
+   | 				 | 	   |
+   |                 |     --- emojiRef: "emoji/wgm5PO0R2rjLmYHmAVqj"
+   |                 |     |
+   |                 |     --- createdAt: March 24, 2022 at 9:00:00 PM UTC+7
+   |                 |
+   |                 ---postId (documents)
+   | 				 | 	   |
+   |                 |     --- emojiRef: "emoji/wgm5PO0R2rjLmYHmAVqj"
+   |                 |     |
+   |                 |     --- createdAt: March 24, 2022 at 9:00:00 PM UTC+7
+   |                 |     |
+   |
+   |           --- emojiComment (collection)
+   |                 |
+   |                 ---commentId (documents)
+   | 				 | 	   |
+   |                 |     --- emojiRef: "emoji/wgm5PO0R2rjLmYHmAVqj"
+   |                 |     |
+   |                 |     --- createdAt: March 24, 2022 at 9:00:00 PM UTC+7
+   |                 |
+   |                 ---commentId (documents)
+   | 				 | 	   |
+   |                 |     --- emojiRef: "emoji/wgm5PO0R2rjLmYHmAVqj"
+   |                 |     |
+   |                 |     --- createdAt: March 24, 2022 at 9:00:00 PM UTC+7
+   |                 |     |
+   |
+   --- following (collection)
+   |      |
+   |      --- uid (document)
+   |           |
+   |           --- userFollowing (collection)
+   |                 |
+   |                 --- uid (documents)
+   |                 |
+   |                 --- uid (documents)
+   --- block (collection)
+   |      |
+   |      --- uid (document)
+   |           |
+   |           --- userBlock (collection)
+   |                 |
+   |                 --- uid (documents)
+   |                 |
+   |                 --- uid (documents)
+   |
+   --- posts (collection)
+   |      |
+   |      --- uid (documents)
+   |           |
+   |           --- userPosts (collection)
+   |                 |
+   |                 --- postId (documents)
+   |                 |     |
+   |                 |     --- title: "Post Title"
+   |                 |     |
+   |                 |     --- content: "post content"
+   |                 |     |
+   |                 |     --- createdAt: March 24, 2022 at 9:00:00 PM UTC+7
+   |                 |     |
+   |                 |     --- updatedAt: March 24, 2022 at 10:15:00 PM UTC+7
+   |                 |
+   |                 --- postId (documents)
+   |                       |
+   |                       --- title: "Second Post Title"
+   |                       |
+   |                       --- content: "second post content"
+   |                       |
+   |                       --- createdAt: September 03, 2018 at 6:16:58 PM UTC+7
+   |                       |
+   |                       --- updatedAt: September 03, 2018 at 6:16:58 PM UTC+7
+   
+   |        
+   ---comments (collection)
+          |
+          ---postId (documents)
+            |
+            --postComments (collection)
+            |      |
+            |     --commentId (documents)
+            |     |     |
+            |     |     --userRef : "users/wgm5PO0R2rjLmYHmAVqj"
+            |     |     |
+            |     |     --content: "first comment of user 2"
+            |     |     |
+            |     |     -- createdAt: September 12, 2013 at 6:16:58 PM UTC+7
+            |     |
+            |     |--commentId (documents)
+            |           |
+            |           --userRef : "user/JZlP4lYxRfas7yymAmpP"
+            |           |
+            |            --content: "second comment of user 2"
+            |           |
+            |           -- createdAt: September 12, 2013 at 6:16:58 PM UTC+7
+				
+```
 - Setup flutter
     1. Clone project from my branch
         ```

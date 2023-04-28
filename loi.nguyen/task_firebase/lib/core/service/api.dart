@@ -162,29 +162,29 @@ class Api {
       StreamController<List<Map<String, dynamic>>>();
 
   Stream<List<Map<String, dynamic>>> streamDataCollection1N(
-      {required String bTable, String? bChildTable}) {
+      {required String bTable,required String bChildTable}) {
+
+
     late CollectionReference<Map<String, dynamic>> bTableCollection =
         FirebaseFirestore.instance.collection(bTable);
+
+
     FirebaseFirestore.instance
-        .collectionGroup(bChildTable ?? bTable)
+        .collectionGroup(bChildTable)
         .snapshots()
         .listen((e) async {
+
       List<Map<String, dynamic>> data = [];
+
       QuerySnapshot listMain = await ref.get();
+
       for (var eMain in listMain.toListMap()) {
         String idMainTable = Methods.getString(eMain, FieldName.id);
-        late QuerySnapshot bSnapshot;
-        if (bChildTable != null) {
-          bSnapshot = await bTableCollection
+       QuerySnapshot bSnapshot = await bTableCollection
               .doc(idMainTable)
               .collection(bChildTable)
               .get();
-        } else {
-          bSnapshot = await bTableCollection.get();
-        }
-        bChildTable == null
-            ? eMain[bTable] = bSnapshot.toListMap()
-            : eMain[bChildTable] = bSnapshot.toListMap();
+        eMain[bChildTable] = bSnapshot.toListMap();
         //Add to data
         data.add(eMain);
       }

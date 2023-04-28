@@ -86,7 +86,7 @@ abstract class BaseView<T extends BaseController> extends StatelessWidget {
             logInfo('$this => Đang load data ');
             return getSkeletonView(context, controller);
           } else if (snapshot.hasError) {
-            logError('$this => Có lỗi xãy ra ');
+            logError('$this => Có lỗi xãy ra ${snapshot.error}');
             return getWarningView('Có lỗi xãy ra => api không chính xác');
           } else {
             QuerySnapshot<Object?>? data = snapshot.data;
