@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_firebase/core/extension/extension.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/ui/base_widget/base_skeleton.dart';
 import 'package:task_firebase/ui/base_widget/find_users_list.dart';
@@ -26,8 +27,10 @@ class BlockUserView extends StatelessWidget {
             if (snapshot.data!.isEmpty) {
               return const BaseSkeleton(content: 'Empty data...');
             }
-            List<UserModel> listUser =
-                snapshot.data!.map((e) => UserModel(e)).toList();
+            List<UserModel> listUser = snapshot.data!
+                .map((e) => UserModel(e))
+                .toList()
+                .skipThisAccount();
             return FindUserList(
               list: listUser,
               trailingItem: (user) {

@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:task_firebase/core/model/field_name.dart';
+import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/core/service/get_navigation.dart';
+import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
 
 extension CallBackAPI on String? {
@@ -68,5 +70,12 @@ extension DateTimeExtensions on DateTime {
     } else {
       return 'just now';
     }
+  }
+}
+
+extension RemoveMyself on List<UserModel> {
+  List<UserModel> skipThisAccount() {
+    removeWhere((e) => e.id == locator<Singleton>().userModel.id);
+    return this;
   }
 }
