@@ -1,5 +1,5 @@
 ## How to setup and config?
-- Setup
+- Setup flutter
     1. Clone project from my branch
         ```
         git clone -b loi.nguyen https://github.com/khoale-lifetechvn/intern-training-042023.git
