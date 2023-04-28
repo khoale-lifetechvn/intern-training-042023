@@ -90,12 +90,12 @@ abstract class BaseView<T extends BaseController> extends StatelessWidget {
             return getWarningView('Có lỗi xãy ra => api không chính xác');
           } else {
             QuerySnapshot<Object?>? data = snapshot.data;
-
+            controller.setData(data);
             if (data!.docs.isEmpty) {
               logError('$this => Không có dữ liệu ');
               return getEmtpyView();
             }
-            controller.setData(data);
+
             logSuccess('$this => Đã load data thành công');
             return getMainView(context, controller);
           }

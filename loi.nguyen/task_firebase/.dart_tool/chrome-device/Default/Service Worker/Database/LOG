@@ -1,4 +1,4 @@
-2023/04/24-09:21:24.823 ca8 Reusing MANIFEST C:\Users\Lifetech\AppData\Local\Temp\flutter_tools.d65a3d31\flutter_tools_chrome_device.be9fa41a\Default\Service Worker\Database/MANIFEST-000001
-2023/04/24-09:21:24.823 ca8 Recovering log #3
-2023/04/24-09:21:24.824 ca8 (ignoring error) C:\Users\Lifetech\AppData\Local\Temp\flutter_tools.d65a3d31\flutter_tools_chrome_device.be9fa41a\Default\Service Worker\Database/000003.log: dropping 2419 bytes; Corruption: checksum mismatch
-2023/04/24-09:21:24.824 ca8 Reusing old log C:\Users\Lifetech\AppData\Local\Temp\flutter_tools.d65a3d31\flutter_tools_chrome_device.be9fa41a\Default\Service Worker\Database/000003.log 
+2023/04/28-17:17:22.031 5030 Reusing MANIFEST C:\Users\Lifetech\AppData\Local\Temp\flutter_tools.47272a\flutter_tools_chrome_device.3f663226\Default\Service Worker\Database/MANIFEST-000001
+2023/04/28-17:17:22.031 5030 Recovering log #3
+2023/04/28-17:17:22.031 5030 (ignoring error) C:\Users\Lifetech\AppData\Local\Temp\flutter_tools.47272a\flutter_tools_chrome_device.3f663226\Default\Service Worker\Database/000003.log: dropping 3232 bytes; Corruption: checksum mismatch
+2023/04/28-17:17:22.032 5030 Reusing old log C:\Users\Lifetech\AppData\Local\Temp\flutter_tools.47272a\flutter_tools_chrome_device.3f663226\Default\Service Worker\Database/000003.log 

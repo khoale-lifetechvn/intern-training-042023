@@ -108,7 +108,7 @@ class ApiNosql {
   }
 
   ///Add, update or remove
-  Future<String?> handleDocument(
+  Future<String> handleDocument(
       {required String id,
       required Map<String, Object> data,
       bool isRemove = false}) async {
@@ -116,6 +116,7 @@ class ApiNosql {
       if (isRemove) {
         await ref.doc(id).delete();
         logInfo('Remove documentID thành công ');
+         return Status.remove.name;
       } else {
         Map<String, Object> newData = Map.from({
           ...data,
@@ -127,7 +128,7 @@ class ApiNosql {
         await ref.doc(id).set(newData, SetOptions(merge: true));
         logInfo('Cập nhật documentID thành công ');
       }
-      return null;
+       return Status.add.name;
     } catch (e) {
       logError('Thêm data thất bại: $e');
       return 'Đã có lỗi xãy ra';

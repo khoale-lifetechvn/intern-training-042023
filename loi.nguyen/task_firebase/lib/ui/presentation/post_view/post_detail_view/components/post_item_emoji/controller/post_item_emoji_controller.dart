@@ -6,11 +6,9 @@ import 'package:task_firebase/core/model/field_name.dart';
 import 'package:task_firebase/core/model/reaction_model.dart';
 import 'package:task_firebase/core/service/api_group.dart';
 import 'package:task_firebase/core/service/api_nosql.dart';
-import 'package:task_firebase/core/service/get_navigation.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/ui/base/base_controller.dart';
-import 'package:task_firebase/ui/base_widget/lf_dialog.dart';
 
 class PostItemEmojiController extends BaseController {
   PostItemEmojiController({required this.postID});
@@ -53,12 +51,9 @@ class PostItemEmojiController extends BaseController {
             data: {FieldName.emojiRef: emojiId},
             isRemove: emojiId == 'remove' ? true : false)
         .then((value) {
-      if (value == null) {
-        locator<GetNavigation>().openDialog(
-            content: 'Reaction successfully', typeDialog: TypeDialog.sucesss);
-      } else {
-        locator<GetNavigation>().openDialog(content: value);
-      }
+      value.showNotifition(
+          addAlert: 'Reaction post successfully',
+          removeAlert: 'UnReaction post successfully');
     });
   }
 
@@ -70,4 +65,3 @@ class PostItemEmojiController extends BaseController {
         .snapshots();
   }
 }
-// FieldPath.documentId

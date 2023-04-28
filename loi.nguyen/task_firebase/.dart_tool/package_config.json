@@ -188,6 +188,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_reaction_button",
+      "rootUri": "file:///C:/Users/Lifetech/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_reaction_button-2.0.1+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_secure_storage",
       "rootUri": "file:///C:/Users/Lifetech/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage-8.0.0",
       "packageUri": "lib/",
@@ -518,7 +524,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-04-20T08:55:03.938717Z",
+  "generated": "2023-04-28T07:52:17.230203Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }

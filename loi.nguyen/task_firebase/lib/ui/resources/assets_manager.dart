@@ -9,5 +9,6 @@ class ImageAssets {
   static const String user = "$imagePath/user.png";
   static const String github = "$imagePath/github.png";
   static const String mewo = "$imagePath/mewo.png";
+  static const String like = "$imagePath/like.png";
 }
 

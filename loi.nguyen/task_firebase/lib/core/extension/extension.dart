@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:task_firebase/core/extension/enum.dart';
 import 'package:task_firebase/core/model/field_name.dart';
 import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/core/service/get_navigation.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
+import 'package:task_firebase/ui/base_widget/lf_dialog.dart';
 
 extension CallBackAPI on String? {
   //Try if turn back screen previous
@@ -77,5 +79,20 @@ extension RemoveMyself on List<UserModel> {
   List<UserModel> skipThisAccount() {
     removeWhere((e) => e.id == locator<Singleton>().userModel.id);
     return this;
+  }
+}
+
+extension OnReturnStatusAddOrRemo on String {
+  void showNotifition({required String addAlert, required String removeAlert}) {
+    if (this == Status.add.name) {
+      locator<GetNavigation>()
+          .openDialog(typeDialog: TypeDialog.sucesss, content: addAlert);
+    } else if (this == Status.remove.name) {
+      locator<GetNavigation>()
+          .openDialog(typeDialog: TypeDialog.sucesss, content: removeAlert);
+    } else {
+      locator<GetNavigation>().openDialog(
+          typeDialog: TypeDialog.sucesss, content: 'Data return invalid');
+    }
   }
 }

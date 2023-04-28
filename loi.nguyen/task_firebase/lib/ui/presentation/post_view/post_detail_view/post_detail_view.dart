@@ -6,7 +6,7 @@ import 'package:task_firebase/core/model/user_model.dart';
 import 'package:task_firebase/ui/base_widget/base_skeleton.dart';
 import 'package:task_firebase/ui/base_widget/lf_appbar.dart';
 import 'package:task_firebase/ui/presentation/block_user_view/default_block_view.dart';
-import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/comment_list.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/comment_item/comment_list.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/post_detail_edit.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/post_item_emoji/post_item_emoji.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/text_field_comment.dart';

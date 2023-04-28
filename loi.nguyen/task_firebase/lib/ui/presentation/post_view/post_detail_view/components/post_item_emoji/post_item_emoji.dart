@@ -60,6 +60,7 @@ class PostItemEmoji extends BaseView<PostItemEmojiController> {
 
   @override
   Widget getEmtpyView() {
+    controller.clearData();
     return itemEmoji();
   }
 }

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:task_firebase/core/model/post_comment_model.dart';
+import 'package:task_firebase/core/service/singleton.dart';
+import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/ui/base_widget/with_spacing.dart';
+import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/comment_item/component/emoji_comment.dart';
 import 'package:task_firebase/ui/resources/color_manager.dart';
 import 'package:task_firebase/ui/resources/styles_manager.dart';
 import 'package:task_firebase/core/extension/extension.dart';
+import 'package:flutter_reaction_button/flutter_reaction_button.dart';
 
-class Comment extends StatelessWidget {
-  const Comment({super.key, required this.postCommentModel});
+class CommentItem extends StatelessWidget {
+  const CommentItem({super.key, required this.postCommentModel});
   final PostCommentModel postCommentModel;
 
   String get urlImg => postCommentModel.user.img.isEmpty
@@ -27,7 +31,7 @@ class Comment extends StatelessWidget {
                 aspectRatio: 0.9,
                 child: Image.network(urlImg, fit: BoxFit.fitHeight)),
           ),
-          Expanded(flex: 4, child: info())
+          Expanded(flex: 4, child: info()),
         ],
       ),
     );
@@ -57,9 +61,16 @@ class Comment extends StatelessWidget {
           Text(
             postCommentModel.content,
             style: getLabelText(color: ColorManager.greyBG),
-          )
+          ),
+          EmojiComment(commentId: postCommentModel.id)
         ],
       ),
     );
   }
+
+  List<Reaction> get listReaction => locator<Singleton>()
+      .listEmoji
+      .map((e) => Reaction(
+          icon: Image.network(e.img, width: 30, height: 30), value: e.id))
+      .toList();
 }
