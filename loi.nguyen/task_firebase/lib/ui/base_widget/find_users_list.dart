@@ -141,26 +141,32 @@ class _FindUserListState extends State<FindUserList> {
       onTap: () {
         locator<GetNavigation>().to(RouterPath.detailAuthor, arguments: model);
       },
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: ColorManager.blue,
-            border: Border.all(color: ColorManager.greyForm, width: 0.3)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              model.showName,
-              style: getTitleText(color: ColorManager.white),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: ColorManager.blue,
+                border: Border.all(color: ColorManager.greyForm, width: 0.3)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  model.showName,
+                  style: getTitleText(color: ColorManager.white),
+                ),
+                const SizedBox(height: AppSize.s12),
+                Image.network(
+                  model.showImg,
+                  fit: BoxFit.cover,
+                ),
+              ],
             ),
-            const SizedBox(height: AppSize.s12),
-            Image.network(
-              model.showImg,
-              fit: BoxFit.cover,
-            ),
-          ],
-        ),
+          ),
+          Positioned(top: -10, right: -10, child: widget.trailingItem(model))
+        ],
       ),
     );
   }
