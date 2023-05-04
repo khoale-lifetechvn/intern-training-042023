@@ -5,12 +5,15 @@ import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/ui/base/base_controller.dart';
 
 abstract class BaseView<T extends BaseController> extends StatelessWidget {
-  const BaseView(T baseController, {super.key, this.isScreen = true})
+  const BaseView(T baseController,
+      {super.key, this.isScreen = true, this.isDeclareController = false})
       : _baseController = baseController;
 
   final T _baseController;
 
   final bool isScreen;
+
+  final bool isDeclareController;
 
   T get controller => _baseController;
 
@@ -36,20 +39,26 @@ abstract class BaseView<T extends BaseController> extends StatelessWidget {
   AppBar? appBar(BuildContext context) => null;
 
   Widget _getWidget() {
-    return ChangeNotifierProvider<T>(
-      create: (context) => _baseController,
-      child: Consumer<T>(
-        builder: ((context, controller, __) {
-          var cacheData = controller.data;
-          if (controller.loadData() != null && cacheData.isEmpty) {
-            return _loadDataNormal(context);
-          } else if (controller.loadDataStream() != null) {
-            return _loadDataStream(context);
-          } else {
-            return getMainView(context, controller);
-          }
-        }),
-      ),
+    return isDeclareController
+        ? baseConumer()
+        : ChangeNotifierProvider<T>(
+            create: (context) => _baseController,
+            child: baseConumer(),
+          );
+  }
+
+  Widget baseConumer() {
+    return Consumer<T>(
+      builder: ((context, controller, __) {
+        var cacheData = controller.data;
+        if (controller.loadData() != null && cacheData.isEmpty) {
+          return _loadDataNormal(context);
+        } else if (controller.loadDataStream() != null) {
+          return _loadDataStream(context);
+        } else {
+          return getMainView(context, controller);
+        }
+      }),
     );
   }
 

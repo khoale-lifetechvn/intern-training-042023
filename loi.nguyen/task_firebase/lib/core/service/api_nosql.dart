@@ -38,7 +38,7 @@ class ApiNosql {
 
       var newDocID = newDocRef.id;
       var dataWithID = {FieldName.selfId: newDocID};
-      await ref.doc(newDocID).set(dataWithID);
+      await ref.doc(newDocID).update(dataWithID);
 
       logSuccess('Thêm data thành công vào bảng $parentTable > $childTable');
       return null;
@@ -116,7 +116,7 @@ class ApiNosql {
       if (isRemove) {
         await ref.doc(id).delete();
         logInfo('Remove documentID thành công ');
-         return Status.remove.name;
+        return Status.remove.name;
       } else {
         Map<String, Object> newData = Map.from({
           ...data,
@@ -128,7 +128,7 @@ class ApiNosql {
         await ref.doc(id).set(newData, SetOptions(merge: true));
         logInfo('Cập nhật documentID thành công ');
       }
-       return Status.add.name;
+      return Status.add.name;
     } catch (e) {
       logError('Thêm data thất bại: $e');
       return 'Đã có lỗi xãy ra';

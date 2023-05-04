@@ -1,43 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/model/emoji_model.dart';
 import 'package:task_firebase/core/model/reaction_model.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
-import 'package:task_firebase/ui/base/base_view.dart';
 import 'package:task_firebase/ui/presentation/post_view/post_detail_view/components/comment_item/component/controller/emoji_comment_controller.dart';
 import 'package:task_firebase/ui/resources/assets_manager.dart';
 import 'package:task_firebase/ui/resources/color_manager.dart';
 import 'package:flutter_reaction_button/flutter_reaction_button.dart';
 import 'package:task_firebase/ui/resources/styles_manager.dart';
 
-class EmojiComment extends StatefulWidget {
-  const EmojiComment({super.key, required this.commentId});
-  final String commentId;
-
-  @override
-  State<EmojiComment> createState() => _EmojiCommentState();
-}
-
-class _EmojiCommentState extends State<EmojiComment>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return _EmojiCommentT(commentId: widget.commentId);
+class EmojiComment extends StatelessWidget {
+  EmojiComment({super.key, required String commentId}) {
+    controller = EmojiCommentController(commentID: commentId);
   }
 
-  @override
-  bool get wantKeepAlive => true;
-}
-
-class _EmojiCommentT extends BaseView<EmojiCommentController> {
-  _EmojiCommentT({required String commentId})
-      : super(EmojiCommentController(commentID: commentId), isScreen: false);
-
-  @override
-  Widget getMainView(BuildContext context, EmojiCommentController controller) {
-    return info();
-  }
+  late final EmojiCommentController controller;
 
   Widget info() {
     List<ReactionModel> list = controller.listEmojiComment;
@@ -80,17 +59,35 @@ class _EmojiCommentT extends BaseView<EmojiCommentController> {
         icon: Image.network(url, width: 30, height: 30), value: value);
   }
 
-  @override
   Widget getEmtpyView() {
-    // logError(controller.currentEmoji == null
-    //     ? 'Empty'
-    //     : controller.currentEmoji!.data.toString());
     return info();
   }
 
-  @override
   Widget getSkeletonView(
       BuildContext context, EmojiCommentController controller) {
     return const CircularProgressIndicator();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+        stream: controller.loadDataStream(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            logInfo('Đang tải...');
+            return getSkeletonView(context, controller);
+          } else if (snapshot.hasError) {
+            logError('Có lỗi xãy ra ${snapshot.error}');
+            return getSkeletonView(context, controller);
+          } else {
+            QuerySnapshot<Object?>? data = snapshot.data;
+            controller.setData(data);
+            if (data!.docs.isEmpty) {
+              return getEmtpyView();
+            }
+
+            return info();
+          }
+        });
   }
 }

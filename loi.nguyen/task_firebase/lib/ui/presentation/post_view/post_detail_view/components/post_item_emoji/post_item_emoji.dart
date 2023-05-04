@@ -10,7 +10,8 @@ import 'package:task_firebase/ui/resources/styles_manager.dart';
 
 class PostItemEmoji extends BaseView<PostItemEmojiController> {
   PostItemEmoji({super.key, required String postID})
-      : super(PostItemEmojiController(postID: postID), isScreen: false);
+      : super(PostItemEmojiController(postID: postID),
+            isScreen: false, isDeclareController: true);
 
   void onTapReaction() {
     locator<GetNavigation>().openReaction(

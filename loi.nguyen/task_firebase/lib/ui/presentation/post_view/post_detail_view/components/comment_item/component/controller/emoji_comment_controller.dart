@@ -8,9 +8,8 @@ import 'package:task_firebase/core/service/api_group.dart';
 import 'package:task_firebase/core/service/api_nosql.dart';
 import 'package:task_firebase/core/service/singleton.dart';
 import 'package:task_firebase/locator.dart';
-import 'package:task_firebase/ui/base/base_controller.dart';
 
-class EmojiCommentController extends BaseController {
+class EmojiCommentController {
   EmojiCommentController({required this.commentID});
   final String commentID;
 
@@ -21,11 +20,12 @@ class EmojiCommentController extends BaseController {
   List<ReactionModel> get listEmojiComment =>
       newData.map((e) => ReactionModel(e)).toList();
 
-  @override
   void setData(QuerySnapshot<Object?>? value) {
     newData.clear();
     newData.addAll(value.toListMapCustom());
   }
+
+  String get userID => locator<Singleton>().userModel.id;
 
   EmojiModel? get currentEmoji {
     for (var e in listEmojiComment) {
@@ -58,7 +58,6 @@ class EmojiCommentController extends BaseController {
     });
   }
 
-  @override
   Stream<QuerySnapshot<Object?>?>? loadDataStream() {
     return _apiEmojiComment.ref
         .where(FieldName.selfId, isEqualTo: commentID)

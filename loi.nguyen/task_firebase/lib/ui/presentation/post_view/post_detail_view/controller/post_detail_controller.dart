@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/extension/methods.dart';
 import 'package:task_firebase/core/model/base_table.dart';
 import 'package:task_firebase/core/extension/extension.dart';
@@ -82,6 +83,7 @@ class PostDetailController {
   }
 
   void postCommnet(String comment) {
+    logError(_postModel.id);
     _apiPostComment.addData(data: {
       FieldName.userRef: locator<Singleton>().userModel.id,
       FieldName.content: comment
@@ -113,5 +115,4 @@ class PostDetailController {
   List<PostCommentModel> get listComment {
     return _dataComment.map((e) => PostCommentModel(e)).toList();
   }
-
 }
