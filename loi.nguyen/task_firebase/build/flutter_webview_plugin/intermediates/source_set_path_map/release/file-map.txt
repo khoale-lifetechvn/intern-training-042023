@@ -1,0 +1,14 @@
+com.flutter_webview_plugin-jetified-window-java-1.0.0-beta04-0 C:\Users\Lifetech\.gradle\caches\transforms-3\006d93cd422dbc43e89591147c2de572\transformed\jetified-window-java-1.0.0-beta04\res
+com.flutter_webview_plugin-core-1.6.0-1 C:\Users\Lifetech\.gradle\caches\transforms-3\4ca28c4a71705f8a687c69dda140a277\transformed\core-1.6.0\res
+com.flutter_webview_plugin-jetified-appcompat-resources-1.1.0-2 C:\Users\Lifetech\.gradle\caches\transforms-3\5294cefc0598aa675e25aca4bb80a9e2\transformed\jetified-appcompat-resources-1.1.0\res
+com.flutter_webview_plugin-appcompat-1.1.0-3 C:\Users\Lifetech\.gradle\caches\transforms-3\72c4169d30545cea2a946cd967d9d7f4\transformed\appcompat-1.1.0\res
+com.flutter_webview_plugin-jetified-annotation-experimental-1.1.0-4 C:\Users\Lifetech\.gradle\caches\transforms-3\8965c941cf4bee4d72541b965c7c9d39\transformed\jetified-annotation-experimental-1.1.0\res
+com.flutter_webview_plugin-jetified-window-1.0.0-beta04-5 C:\Users\Lifetech\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\res
+com.flutter_webview_plugin-main-6 C:\Users\Lifetech\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_webview_plugin-0.3.11\android\src\main\res
+com.flutter_webview_plugin-release-7 C:\Users\Lifetech\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_webview_plugin-0.3.11\android\src\release\res
+com.flutter_webview_plugin-pngs-8 D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\generated\res\pngs\release
+com.flutter_webview_plugin-resValues-9 D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\generated\res\resValues\release
+com.flutter_webview_plugin-rs-10 D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\generated\res\rs\release
+com.flutter_webview_plugin-mergeReleaseResources-11 D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.flutter_webview_plugin-mergeReleaseResources-12 D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.flutter_webview_plugin-merged_res-13 D:\intern-training-042023\loi.nguyen\task_firebase\build\flutter_webview_plugin\intermediates\merged_res\release

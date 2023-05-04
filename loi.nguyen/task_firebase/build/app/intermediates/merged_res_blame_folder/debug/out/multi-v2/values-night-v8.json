@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.task_firebase.app-mergeDebugResources-30:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.task_firebase.app-mergeDebugResources-32:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "D:\\intern-training-042023\\loi.nguyen\\task_firebase\\android\\app\\src\\main\\res\\values-night\\styles.xml",

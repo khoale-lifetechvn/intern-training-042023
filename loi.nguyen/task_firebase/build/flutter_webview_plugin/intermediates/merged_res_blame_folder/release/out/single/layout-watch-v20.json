@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.flutter_webview_plugin-merged_res-12:/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "com.flutter_webview_plugin-appcompat-1.1.0-3:/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "com.flutter_webview_plugin-merged_res-12:/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "com.flutter_webview_plugin-appcompat-1.1.0-3:/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    }
+]

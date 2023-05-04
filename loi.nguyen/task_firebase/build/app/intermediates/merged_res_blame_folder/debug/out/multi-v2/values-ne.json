@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.task_firebase.app-mergeDebugResources-30:/values-ne/values-ne.xml",
+            "outputFile": "com.example.task_firebase.app-mergeDebugResources-32:/values-ne/values-ne.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Lifetech\\.gradle\\caches\\transforms-3\\082fa8f1e076fd76c98f4d760b4e67b1\\transformed\\jetified-play-services-base-18.0.1\\res\\values-ne\\values.xml",

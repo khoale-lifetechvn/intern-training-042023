@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.task_firebase.app-mergeDebugResources-30:/values-be/values-be.xml",
+            "outputFile": "com.example.task_firebase.app-mergeDebugResources-32:/values-be/values-be.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Lifetech\\.gradle\\caches\\transforms-3\\72c4169d30545cea2a946cd967d9d7f4\\transformed\\appcompat-1.1.0\\res\\values-be\\values-be.xml",
