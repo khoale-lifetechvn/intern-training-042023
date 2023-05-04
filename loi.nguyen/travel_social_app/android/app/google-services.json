@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "677440208167",
+    "project_id": "firestore-root",
+    "storage_bucket": "firestore-root.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677440208167:android:4b911255b2f5706ec93d02",
+        "android_client_info": {
+          "package_name": "com.example.task_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "677440208167-v3313eu27f8affjm3eg428s07qu7k8lj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.task_firebase",
+            "certificate_hash": "70c1cf9ad9b43a9069c37d55d2576c68acedc432"
+          }
+        },
+        {
+          "client_id": "677440208167-7cnj9k5tslo09i5ej8p3feg3vln4i9dc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRSovg8qDqWdrPA9RUhSiswjxhAgri5Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677440208167-5i9fno214cqd8f6eqjo6qlt2vvc6vskt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "677440208167-gi5jqapkuak6q5ktdplslredjj69jg7o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.taskFirebase"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677440208167:android:3b3d205ff41b015bc93d02",
+        "android_client_info": {
+          "package_name": "com.example.travel_social_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "677440208167-7cnj9k5tslo09i5ej8p3feg3vln4i9dc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRSovg8qDqWdrPA9RUhSiswjxhAgri5Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677440208167-5i9fno214cqd8f6eqjo6qlt2vvc6vskt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "677440208167-gi5jqapkuak6q5ktdplslredjj69jg7o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.taskFirebase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

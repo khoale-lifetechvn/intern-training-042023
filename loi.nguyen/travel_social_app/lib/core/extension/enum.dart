@@ -1,0 +1,4 @@
+enum Status{
+  add, 
+  remove
+}
