@@ -113,6 +113,9 @@ class PostDetailController {
   }
 
   List<PostCommentModel> get listComment {
-    return _dataComment.map((e) => PostCommentModel(e)).toList();
+    List<PostCommentModel> value =
+        _dataComment.map((e) => PostCommentModel(e)).toList();
+    value.sort((a, b) => a.updatedAt.compareTo(b.updatedAt));
+    return value;
   }
 }

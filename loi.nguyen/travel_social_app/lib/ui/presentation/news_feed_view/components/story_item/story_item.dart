@@ -8,12 +8,15 @@ import 'package:travel_social_app/ui/resources/styles_manager.dart';
 class StoryItem extends StatelessWidget {
   const StoryItem({super.key});
 
-  List<UserModel> get listUser =>
-      locator<Singleton>().listUser.take(5).toList();
+  List<UserModel> get listUser => locator<Singleton>()
+      .listUser
+      .where((e) => e.img.isNotEmpty)
+      .take(5)
+      .toList();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 160,
       child: ListView.separated(
           clipBehavior: Clip.none,
           itemCount: listUser.length,
@@ -29,17 +32,19 @@ class StoryItem extends StatelessWidget {
         width: 120,
         padding: const EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 8),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8), color: ColorManager.blue),
+            borderRadius: BorderRadius.circular(8), color: ColorManager.greyTF),
         child: Column(
           children: [
             Image.network(
               userModel.showImg,
               fit: BoxFit.cover,
+              width: 90,
+              height: 90,
             ),
             const SizedBox(height: 16),
             Text(
               userModel.showName,
-              style: getTitle2Text(color: ColorManager.white),
+              style: getTitle2Text(color: ColorManager.black),
               maxLines: 1,
             )
           ],

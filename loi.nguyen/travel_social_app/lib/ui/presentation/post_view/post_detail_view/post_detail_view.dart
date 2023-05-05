@@ -1,16 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:travel_social_app/core/model/post_comment_model.dart';
 import 'package:travel_social_app/core/model/post_model.dart';
 import 'package:travel_social_app/core/model/user_model.dart';
 import 'package:travel_social_app/ui/base_widget/base_skeleton.dart';
 import 'package:travel_social_app/ui/base_widget/lf_appbar.dart';
 import 'package:travel_social_app/ui/presentation/block_user_view/default_block_view.dart';
-import 'package:travel_social_app/ui/presentation/post_view/post_detail_view/components/comment_item/comment_list.dart';
-import 'package:travel_social_app/ui/presentation/post_view/post_detail_view/components/post_detail_edit.dart';
-import 'package:travel_social_app/ui/presentation/post_view/post_detail_view/components/post_item_emoji/controller/post_item_emoji_controller.dart';
-import 'package:travel_social_app/ui/presentation/post_view/post_detail_view/components/post_item_emoji/post_item_emoji.dart';
 import 'package:travel_social_app/ui/presentation/post_view/post_detail_view/components/text_field_comment.dart';
 import 'package:travel_social_app/ui/presentation/post_view/post_detail_view/controller/post_detail_controller.dart';
 import 'package:travel_social_app/ui/resources/color_manager.dart';
@@ -26,12 +21,7 @@ class PostDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => PostItemEmojiController(postID: model.id),
-      child: controller.isAuthor
-          ? PostDetailEdit(postModel: model)
-          : someonePost(context),
-    );
+    return const SizedBox();
   }
 
   Widget someonePost(BuildContext context) {
@@ -88,7 +78,7 @@ class PostDetailView extends StatelessWidget {
               ],
             ),
           ),
-          PostItemEmoji(postID: model.id)
+          // PostItemEmoji(postID: model.id)
         ],
       ),
     );
@@ -129,7 +119,7 @@ class PostDetailView extends StatelessWidget {
                 children: [
                   Text('Comment ${list.length}'),
                   const SizedBox(height: 16),
-                  CommentList(listCommnent: list)
+                  // CommentList(listCommnent: list)
                 ],
               ),
             );

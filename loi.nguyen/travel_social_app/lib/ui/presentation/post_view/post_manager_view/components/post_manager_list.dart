@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_social_app/core/model/post_model.dart';
-import 'package:travel_social_app/core/service/get_navigation.dart';
-import 'package:travel_social_app/locator.dart';
 import 'package:travel_social_app/ui/presentation/post_view/post_manager_view/components/post_manager_tgg_button.dart';
 import 'package:travel_social_app/ui/resources/color_manager.dart';
-import 'package:travel_social_app/ui/resources/routes_manager.dart';
 import 'package:travel_social_app/ui/resources/styles_manager.dart';
 
 class PostManagerList extends StatefulWidget {
@@ -60,7 +57,7 @@ class _MainManagerState extends State<PostManagerList> {
   Widget cardPost(PostModel model) {
     return ListTile(
       onTap: () {
-        locator<GetNavigation>().to(RouterPath.postDetail, arguments: model);
+        // locator<GetNavigation>().to(RouterPath.postDetail, arguments: model);
       },
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),

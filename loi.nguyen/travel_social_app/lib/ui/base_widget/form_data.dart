@@ -42,17 +42,8 @@ class FormData extends StatelessWidget {
               right: AppPadding.p12,
             ),
             decoration: BoxDecoration(
-              color: ColorManager.greyForm,
               borderRadius:
                   isFullScreen ? BorderRadius.zero : BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 16), // changes position of shadow
-                ),
-              ],
             ),
             child: Column(
               children: [

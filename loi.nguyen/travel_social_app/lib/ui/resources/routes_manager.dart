@@ -9,17 +9,13 @@ import 'package:travel_social_app/ui/presentation/emoji_view/emoji_view.dart';
 import 'package:travel_social_app/ui/presentation/follow_users_view/follow_users_view.dart';
 import 'package:travel_social_app/ui/presentation/home_view/home_view.dart';
 import 'package:travel_social_app/ui/presentation/login_view/login_view.dart';
-import 'package:travel_social_app/ui/presentation/post_view/post_add_view/post_add_view.dart';
-import 'package:travel_social_app/ui/presentation/post_view/post_detail_view/post_detail_view.dart';
-import 'package:travel_social_app/ui/presentation/post_view/post_manager_view/post_manger_view.dart';
+import 'package:travel_social_app/ui/presentation/manager_post_view/mangager_post_view.dart';
 import 'package:travel_social_app/ui/presentation/register_view/register_view.dart';
 import 'package:travel_social_app/ui/presentation/user_view/user_detail_view/user_detail_view.dart';
 import 'package:travel_social_app/ui/presentation/user_view/user_view.dart';
 
 class RouterPath {
-  static const String postAdd = "/postAdd";
-  static const String postDetail = "/postDetail";
-  static const String postManager = "/postManager";
+  static const String managerPost = "/managerPost";
 
   static const String login = "/";
   static const String register = "/register";
@@ -73,16 +69,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => EmojiDetailView(model: emoji));
 
       //Posts
-      case RouterPath.postAdd:
-        return MaterialPageRoute(builder: (_) => PostAddView());
-      case RouterPath.postManager:
-        return MaterialPageRoute(builder: (_) => const PostManagerView());
-      case RouterPath.postDetail:
-        PostModel post = routeSettings.arguments as PostModel;
+      case RouterPath.managerPost:
+        PostModel? post = routeSettings.arguments as PostModel?;
         return MaterialPageRoute(
-            builder: (_) => PostDetailView(
-                  model: post,
-                ));
+            builder: (_) => ManagerPostView(postModel: post));
 
       default:
         return unDefinedRoute();

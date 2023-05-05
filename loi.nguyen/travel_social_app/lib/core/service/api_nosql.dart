@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:travel_social_app/core/extension/enum.dart';
 import 'package:travel_social_app/core/extension/log.dart';
+import 'package:path/path.dart';
+import 'package:travel_social_app/core/extension/methods.dart';
 import 'package:travel_social_app/core/model/field_name.dart';
 
 ///---parent table
@@ -26,7 +31,21 @@ class ApiNosql {
   final String parentID;
   final String childTable;
 
-  Future<String?> addData({required Map data}) async {
+  FirebaseStorage storage = FirebaseStorage.instance;
+
+  Future<String?> addData({required Map data, File? file}) async {
+    if (file != null) {
+      String pathFile =
+          '$parentTable/$childTable/${DateTime.now()}_${basename(file.path)}';
+
+      try {
+        String url = await _uploadFile(file, pathFile: pathFile);
+        data['img'] = url;
+        logSuccess('Upload file thành công: $url');
+      } catch (e) {
+        logError('Upload file không thành công: $e');
+      }
+    }
     try {
       Map<String, Object> newData = Map.from({
         ...data,
@@ -67,7 +86,31 @@ class ApiNosql {
     }
   }
 
-  Future<String?> updateData({required String id, required Map data}) async {
+  Future<String?> updateData(
+      {required String id, required Map data, File? file}) async {
+    if (file != null) {
+      try {
+        //Remove file
+        String img = Methods.getString(data, FieldName.img);
+        if (img.isNotEmpty) {
+          String currentDirectory =
+              '$parentTable/$childTable/${FirebaseStorage.instance.refFromURL(data['img'] as String).name}';
+          await storage.ref().child(currentDirectory).delete();
+        }
+
+        //upload new file
+
+        String pathFile =
+            '$parentTable/$childTable/${DateTime.now()}_${basename(file.path)}';
+        String url = await _uploadFile(file, pathFile: pathFile);
+        data['img'] = url;
+
+        logSuccess('Cập nhật ảnh mới thành công');
+      } catch (e) {
+        logError(
+            'Cập nhât ảnh mới thất bại: Có thể do đường dẫn ảnh (img) không có trong data $e');
+      }
+    }
     try {
       Map<String, Object> newData = Map.from({
         ...data,
@@ -146,5 +189,11 @@ class ApiNosql {
       logError('Error getting document: $error');
       return false;
     });
+  }
+
+  Future<String> _uploadFile(File file, {required String pathFile}) async {
+    UploadTask uploadTask = storage.ref(pathFile).putFile(file);
+    String url = await (await uploadTask).ref.getDownloadURL();
+    return url;
   }
 }

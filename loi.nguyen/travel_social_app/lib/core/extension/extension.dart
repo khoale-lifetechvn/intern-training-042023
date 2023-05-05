@@ -10,9 +10,15 @@ import 'package:travel_social_app/ui/base_widget/lf_dialog.dart';
 
 extension CallBackAPI on String? {
   //Try if turn back screen previous
-  void backOrNotification() {
+  void backOrNotification({String? content, bool isPopScreen=true}) {
     if (this == null) {
-      locator<GetNavigation>().back();
+      if(isPopScreen){
+        locator<GetNavigation>().back();
+      }
+      if (content != null) {
+        locator<GetNavigation>()
+            .openDialog(typeDialog: TypeDialog.sucesss, content: content);
+      }
     } else {
       locator<GetNavigation>().openDialog(content: this);
     }

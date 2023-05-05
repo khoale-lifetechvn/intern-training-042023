@@ -12,7 +12,7 @@ class PostMangerAll extends StatefulWidget {
 }
 
 class _PostMangerAllState extends State<PostMangerAll>
-    with AutomaticKeepAliveClientMixin {
+  with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);

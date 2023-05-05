@@ -7,7 +7,7 @@ import 'package:travel_social_app/core/service/singleton.dart';
 import 'package:travel_social_app/locator.dart';
 
 class UserModel extends BaseModel {
-  UserModel(super.data);
+  UserModel(Map<String, dynamic> data) : super(data);
 
   String get name => Methods.getString(data, FieldName.name);
 

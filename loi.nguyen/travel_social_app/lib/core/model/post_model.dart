@@ -1,4 +1,5 @@
 import 'package:travel_social_app/core/extension/methods.dart';
+import 'package:travel_social_app/core/extension/extension.dart';
 import 'package:travel_social_app/core/model/base_model.dart';
 import 'package:travel_social_app/core/model/field_name.dart';
 import 'package:travel_social_app/core/service/singleton.dart';
@@ -12,6 +13,9 @@ class PostModel extends BaseModel {
 
   ///Id user
   String get refID => Methods.getString(data, FieldName.refID);
+  String get showImg => img.isEmpty
+      ? 'https://png.pngtree.com/png-vector/20220810/ourmid/pngtree-blogging-concept-picture-writer-laptop-png-image_5722986.png'
+      : img;
 
   ///
   bool get isBlockThisAccount {
@@ -22,4 +26,8 @@ class PostModel extends BaseModel {
     }
     return false;
   }
+
+  //
+  String get updateDateRelative =>
+      Methods.getDateTime(data, FieldName.updatedAt).toRelativeTime();
 }

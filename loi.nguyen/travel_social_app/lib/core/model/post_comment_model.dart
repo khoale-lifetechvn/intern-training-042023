@@ -13,7 +13,7 @@ class PostCommentModel extends BaseModel {
   String get content => Methods.getString(data, FieldName.content);
 
   ///info user
-  UserModel get user => Methods.getMap(data, BaseTable.users);
+  UserModel get user => UserModel(Methods.getMap(data, BaseTable.users));
 
   DateTime get createdAtDate => Methods.getDateTime(data, FieldName.createdAt);
 }

@@ -60,7 +60,7 @@ class _PostManagerViewState extends State<PostManagerView>
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              locator<GetNavigation>().to(RouterPath.postAdd);
+              locator<GetNavigation>().to(RouterPath.managerPost);
             },
             child: const Icon(Icons.add),
           ),
@@ -103,7 +103,7 @@ class _LoadUser extends StatelessWidget {
         });
   }
 
-     Future<QuerySnapshot> loadListUser() {
+  Future<QuerySnapshot> loadListUser() {
     Api api = Api(BaseTable.users);
     return api.getDataCollection();
   }

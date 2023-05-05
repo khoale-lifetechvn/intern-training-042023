@@ -62,6 +62,7 @@ class _TextFieldCommentState extends State<TextFieldComment> {
               ),
         suffixIconColor: ColorManager.greyTF,
         border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(color: ColorManager.greyBG)),
       ),
       maxLines: 1,

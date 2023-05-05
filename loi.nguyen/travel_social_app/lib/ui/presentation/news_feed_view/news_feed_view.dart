@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_social_app/ui/presentation/home_view/base_home_view.dart';
-import 'package:travel_social_app/ui/presentation/news_feed_view/components/posts_item/posts_item.dart';
+import 'package:travel_social_app/ui/presentation/news_feed_view/components/posts_list/posts_list.dart';
 import 'package:travel_social_app/ui/presentation/news_feed_view/components/story_item/story_item.dart';
 import 'package:travel_social_app/ui/resources/styles_manager.dart';
 
@@ -10,14 +10,14 @@ class NewsFeedView extends BaseHomeView {
   @override
   Widget buildBody(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+      padding: const EdgeInsets.all(16),
       children: [
         baseContent(
           content: 'May you know?',
           widget: const StoryItem(),
         ),
         const SizedBox(height: 24),
-        baseContent(content: 'Popular', widget: const PostItem())
+        baseContent(content: 'Popular', widget: PostsList())
       ],
     );
   }

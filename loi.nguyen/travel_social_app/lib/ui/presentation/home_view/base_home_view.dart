@@ -43,7 +43,7 @@ abstract class BaseHomeView extends StatelessWidget {
         ),
       ),
       title: Padding(
-        padding: const EdgeInsets.only(top: 10.0),
+        padding: const EdgeInsets.only(top: 12, bottom: 12),
         child: SearchItem(onChanged: (v) {}),
       ),
     );
