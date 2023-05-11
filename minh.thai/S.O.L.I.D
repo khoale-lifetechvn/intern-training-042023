@@ -1,4 +1,9 @@
 S.O.L.I.D
+S - Nguyên tắc Trách nhiệm Đơn lẻ (Single Responsibility Principle): Một lớp chỉ nên có một lý do để thay đổi.
+O - Nguyên tắc Mở/Đóng (Open-Closed Principle): Các thực thể phần mềm (lớp, module, chức năng, v.v.) nên mở để mở rộng nhưng đóng để sửa đổi.
+L - Nguyên tắc Thay thế Liskov (Liskov Substitution Principle): Các chức năng sử dụng con trỏ hoặc tham chiếu đến các lớp cơ sở phải có thể sử dụng các đối tượng của các lớp kế thừa mà không cần biết.
+I - Nguyên tắc Phân chia Giao diện (Interface Segregation Principle): Khách hàng không nên bị ép buộc phụ thuộc vào các giao diện mà họ không sử dụng.
+D - Nguyên tắc Đảo ngược Phụ thuộc (Dependency Inversion Principle): Phụ thuộc vào các trừu tượng, không phải là các cụ thể.
 
 //----S----//
 S - Nguyên tắc Trách nhiệm Đơn lẻ (Single Responsibility Principle): Một lớp chỉ nên có một lý do để thay đổi.
